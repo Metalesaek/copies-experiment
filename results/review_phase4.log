@@ -1,0 +1,232 @@
+== 1. adaptive rewrites (phi4, ~1.5 h)
+200 articles, 200 to rewrite with invented details
+  20/200
+  40/200
+  60/200
+  80/200
+  100/200
+  120/200
+  140/200
+  160/200
+  180/200
+  200/200
+== 2. new-information test, plain and adaptive rewrites (CPU, ~40 min)
+200 rewrites
+  20/200
+  40/200
+  60/200
+  80/200
+  100/200
+  120/200
+  140/200
+  160/200
+  180/200
+  200/200
+spaCy entities ...
+{'rewriter': 'phi4', 'extractor': 'spacy', 'threshold': 0.4, 'recall_reworded': 0.905, 'false_merge': 0.05389221556886228}
+# New information as a copy signal
+
+Rewrites by phi4: 200; independent reports of the same event found for 167 originals (other outlet, within one day, more than 3 shared facts, 5-gram Jaccard < 0.2).
+
+| | median share of new facts | median 5-gram Jaccard with the original |
+|---|---|---|
+| rewrite (copy) | 0.27 | 0.04 |
+| independent report | 0.82 | below 0.2 by selection |
+
+AUC (copy has less new information than an independent report): **0.96**
+
+| flag as copy if new facts below | rewrites caught (recall) | independent reports wrongly flagged |
+|---|---|---|
+| 0.1 | 0.03 | 0.00 |
+| 0.2 | 0.22 | 0.01 |
+| 0.3 | 0.60 | 0.02 |
+| 0.4 | 0.82 | 0.05 |
+| 0.5 | 0.92 | 0.11 |
+
+## Same pairs, facts from spaCy named entities (en_core_web_sm) and quotations
+
+### spaCy entities
+
+Median share of new facts: rewrites 0.21, independent reports 0.84. AUC: **0.97**
+
+| flag as copy if new facts below | rewrites caught (recall) | independent reports wrongly flagged |
+|---|---|---|
+| 0.1 | 0.12 | 0.00 |
+| 0.2 | 0.45 | 0.01 |
+| 0.3 | 0.76 | 0.03 |
+| 0.4 | 0.91 | 0.05 |
+| 0.5 | 0.95 | 0.07 |
+
+Rank correlation of the two measures over all reports: 0.88.
+
+Facts = capitalised names, numbers and quotations (first 2,500 characters, boilerplate removed). Text similarity alone linked 0% of the rewrites to their original (results/detector_measured.md).
+200 rewrites
+  20/200
+  40/200
+  60/200
+  80/200
+  100/200
+  120/200
+  140/200
+  160/200
+  180/200
+  200/200
+spaCy entities ...
+{'rewriter': 'phi4+invented', 'extractor': 'spacy', 'threshold': 0.4, 'recall_reworded': 0.745, 'false_merge': 0.05389221556886228}
+# New information as a copy signal
+
+Rewrites by phi4+invented: 200; independent reports of the same event found for 167 originals (other outlet, within one day, more than 3 shared facts, 5-gram Jaccard < 0.2).
+
+| | median share of new facts | median 5-gram Jaccard with the original |
+|---|---|---|
+| rewrite (copy) | 0.37 | 0.04 |
+| independent report | 0.82 | below 0.2 by selection |
+
+AUC (copy has less new information than an independent report): **0.92**
+
+| flag as copy if new facts below | rewrites caught (recall) | independent reports wrongly flagged |
+|---|---|---|
+| 0.1 | 0.01 | 0.00 |
+| 0.2 | 0.06 | 0.01 |
+| 0.3 | 0.28 | 0.02 |
+| 0.4 | 0.57 | 0.05 |
+| 0.5 | 0.79 | 0.11 |
+
+## Same pairs, facts from spaCy named entities (en_core_web_sm) and quotations
+
+### spaCy entities
+
+Median share of new facts: rewrites 0.31, independent reports 0.84. AUC: **0.94**
+
+| flag as copy if new facts below | rewrites caught (recall) | independent reports wrongly flagged |
+|---|---|---|
+| 0.1 | 0.03 | 0.00 |
+| 0.2 | 0.15 | 0.01 |
+| 0.3 | 0.47 | 0.03 |
+| 0.4 | 0.74 | 0.05 |
+| 0.5 | 0.86 | 0.07 |
+
+Rank correlation of the two measures over all reports: 0.91.
+
+Facts = capitalised names, numbers and quotations (first 2,500 characters, boilerplate removed). Text similarity alone linked 0% of the rewrites to their original (results/detector_measured.md).
+   measured: reworded copies missed 0.095 (adaptive: 0.255), independent chains wrongly merged 0.05389221556886228
+== 3. phi4 verdicts for the new detector (no training)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|1         | 4/338 [00:00<00:14, 23.14it/s]Loading weights:   2%|2         | 7/338 [00:00<00:18, 17.74it/s]Loading weights:   3%|2         | 9/338 [00:00<00:18, 17.88it/s]Loading weights:   3%|3         | 11/338 [00:00<00:19, 17.14it/s]Loading weights:   4%|4         | 15/338 [00:00<00:16, 19.49it/s]Loading weights:   5%|5         | 17/338 [00:01<00:22, 14.22it/s]Loading weights:   7%|6         | 22/338 [00:01<00:16, 19.29it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 278.04it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (0 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_chains    970 new verdicts (970 cached)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    95 new verdicts (1065 cached)
+
+seed=10 attack=collusion: 1325 reports (342 lie reports)
+  judge_chains    282 new verdicts (1347 cached)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_chains    967 new verdicts (2314 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    106 new verdicts (2420 cached)
+
+seed=11 attack=collusion: 1289 reports (342 lie reports)
+  judge_chains    303 new verdicts (2723 cached)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_chains    967 new verdicts (3690 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    78 new verdicts (3768 cached)
+
+seed=12 attack=collusion: 1319 reports (342 lie reports)
+  judge_chains    294 new verdicts (4062 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_novelty\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   5%|4         | 16/338 [00:00<00:03, 101.62it/s]Loading weights:   8%|7         | 27/338 [00:00<00:07, 41.51it/s] Loading weights: 100%|##########| 338/338 [00:00<00:00, 574.60it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (0 cached verdicts)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    1127 new verdicts (1127 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    1108 new verdicts (2235 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    1112 new verdicts (3347 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_novelty_adaptive\results.jsonl
+   waiting 6 minutes for Ollama to unload its model and free the GPU
+== 4. training (~6.5 h)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|2         | 7/338 [00:00<00:06, 52.39it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 2333.95it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (4062 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  chains_k        learn_new=0.482 updates=0.530 lies_absorbed=0.573 accepted_true=0.486 accepted_lies=0.561 (10.3 min)
+  chains_k_judge  learn_new=0.443 updates=0.420 lies_absorbed=0.135 accepted_true=0.416 accepted_lies=0.064 (8.8 min)
+  judge_chains    learn_new=0.590 updates=0.210 lies_absorbed=0.316 accepted_true=0.488 accepted_lies=0.327 (9.6 min)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  chains_k        learn_new=0.453 updates=0.560 lies_absorbed=0.667 accepted_true=0.486 accepted_lies=0.649 (10.7 min)
+  chains_k_judge  learn_new=0.468 updates=0.440 lies_absorbed=0.135 accepted_true=0.416 accepted_lies=0.082 (9.0 min)
+  judge_chains    learn_new=0.542 updates=0.210 lies_absorbed=0.421 accepted_true=0.488 accepted_lies=0.409 (10.4 min)
+
+seed=10 attack=collusion: 1325 reports (342 lie reports)
+  chains_k        learn_new=0.455 updates=0.570 lies_absorbed=0.842 accepted_true=0.486 accepted_lies=0.912 (5.9 min)
+  chains_k_judge  learn_new=0.403 updates=0.430 lies_absorbed=0.164 accepted_true=0.416 accepted_lies=0.094 (5.8 min)
+  judge_chains    learn_new=0.510 updates=0.220 lies_absorbed=0.450 accepted_true=0.488 accepted_lies=0.532 (5.7 min)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  chains_k        learn_new=0.463 updates=0.410 lies_absorbed=0.591 accepted_true=0.468 accepted_lies=0.591 (9.7 min)
+  chains_k_judge  learn_new=0.460 updates=0.360 lies_absorbed=0.123 accepted_true=0.426 accepted_lies=0.082 (8.5 min)
+  judge_chains    learn_new=0.550 updates=0.140 lies_absorbed=0.351 accepted_true=0.484 accepted_lies=0.333 (9.7 min)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  chains_k        learn_new=0.487 updates=0.400 lies_absorbed=0.637 accepted_true=0.468 accepted_lies=0.667 (9.9 min)
+  chains_k_judge  learn_new=0.470 updates=0.380 lies_absorbed=0.117 accepted_true=0.426 accepted_lies=0.088 (8.8 min)
+  judge_chains    learn_new=0.578 updates=0.150 lies_absorbed=0.404 accepted_true=0.484 accepted_lies=0.415 (9.6 min)
+
+seed=11 attack=collusion: 1289 reports (342 lie reports)
+  chains_k        learn_new=0.463 updates=0.440 lies_absorbed=0.889 accepted_true=0.468 accepted_lies=0.959 (5.6 min)
+  chains_k_judge  learn_new=0.445 updates=0.390 lies_absorbed=0.175 accepted_true=0.426 accepted_lies=0.111 (4.7 min)
+  judge_chains    learn_new=0.542 updates=0.160 lies_absorbed=0.550 accepted_true=0.484 accepted_lies=0.585 (4.8 min)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  chains_k        learn_new=0.485 updates=0.550 lies_absorbed=0.538 accepted_true=0.494 accepted_lies=0.544 (8.3 min)
+  chains_k_judge  learn_new=0.432 updates=0.490 lies_absorbed=0.117 accepted_true=0.432 accepted_lies=0.088 (7.1 min)
+  judge_chains    learn_new=0.562 updates=0.160 lies_absorbed=0.357 accepted_true=0.486 accepted_lies=0.333 (8.5 min)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  chains_k        learn_new=0.495 updates=0.580 lies_absorbed=0.626 accepted_true=0.494 accepted_lies=0.608 (8.9 min)
+  chains_k_judge  learn_new=0.417 updates=0.510 lies_absorbed=0.129 accepted_true=0.432 accepted_lies=0.094 (7.6 min)
+  judge_chains    learn_new=0.578 updates=0.160 lies_absorbed=0.398 accepted_true=0.486 accepted_lies=0.398 (8.8 min)
+
+seed=12 attack=collusion: 1319 reports (342 lie reports)
+  chains_k        learn_new=0.420 updates=0.550 lies_absorbed=0.854 accepted_true=0.494 accepted_lies=0.947 (5.2 min)
+  chains_k_judge  learn_new=0.417 updates=0.520 lies_absorbed=0.211 accepted_true=0.432 accepted_lies=0.129 (5.7 min)
+  judge_chains    learn_new=0.520 updates=0.180 lies_absorbed=0.567 accepted_true=0.486 accepted_lies=0.614 (6.3 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_novelty\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/338 [00:00<00:07, 41.92it/s]Loading weights:   4%|4         | 15/338 [00:00<00:05, 62.49it/s]Loading weights:   7%|6         | 22/338 [00:00<00:05, 58.91it/s]Loading weights:   8%|8         | 28/338 [00:00<00:08, 38.40it/s]Loading weights:  10%|9         | 33/338 [00:00<00:08, 34.28it/s]Loading weights:  13%|#3        | 44/338 [00:00<00:05, 49.15it/s]Loading weights:  15%|#4        | 50/338 [00:01<00:05, 49.52it/s]Loading weights:  17%|#6        | 56/338 [00:01<00:06, 42.15it/s]Loading weights:  29%|##8       | 98/338 [00:01<00:01, 122.92it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 246.20it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (3347 cached verdicts)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  chains_k        learn_new=0.468 updates=0.580 lies_absorbed=0.877 accepted_true=0.486 accepted_lies=0.942 (10.9 min)
+  chains_k_judge  learn_new=0.435 updates=0.450 lies_absorbed=0.135 accepted_true=0.416 accepted_lies=0.105 (9.2 min)
+  judge_chains    learn_new=0.570 updates=0.190 lies_absorbed=0.509 accepted_true=0.488 accepted_lies=0.579 (11.0 min)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  chains_k        learn_new=0.477 updates=0.410 lies_absorbed=0.918 accepted_true=0.468 accepted_lies=0.953 (11.2 min)
+  chains_k_judge  learn_new=0.468 updates=0.370 lies_absorbed=0.164 accepted_true=0.426 accepted_lies=0.117 (9.3 min)
+  judge_chains    learn_new=0.568 updates=0.160 lies_absorbed=0.556 accepted_true=0.484 accepted_lies=0.602 (10.3 min)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  chains_k        learn_new=0.490 updates=0.560 lies_absorbed=0.924 accepted_true=0.494 accepted_lies=0.953 (11.2 min)
+  chains_k_judge  learn_new=0.435 updates=0.490 lies_absorbed=0.164 accepted_true=0.432 accepted_lies=0.135 (9.2 min)
+  judge_chains    learn_new=0.568 updates=0.180 lies_absorbed=0.591 accepted_true=0.486 accepted_lies=0.596 (10.5 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_novelty_adaptive\results.jsonl
+== phase 4 done

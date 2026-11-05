@@ -1,0 +1,32 @@
+# "Copies are not confirmations": learning from a stream of news reports.
+# Inherits the first paper's configuration; only what differs is set here.
+base: ../../sura_experiment/configs/default.yaml
+
+output_dir: results
+cache_dir: ../sura_experiment/cache   # reuse the known-fact screening of the first paper
+
+data:
+  n_updates: 100
+
+copies:
+  chain_file: data/copy_chains.csv   # real chain sizes measured in CC-News
+  corpus_articles: 199998            # articles compared in that run (singletons = not copied)
+  truth_chains: [[1, 0.5], [2, 0.3], [3, 0.2]]   # [chains, share] per TRUE claim (assumption; swept)
+  attack_copies: 10          # copies per lie in the copy / paraphrase attacks
+  paraphrase_evasion: 0.7    # chance a reworded copy is not linked to its chain
+  detector_recall: 0.95      # chance a verbatim copy is linked to its chain
+  false_merge: 0.0           # chance an independent chain is wrongly linked to the first one
+  correlated_misses: false   # true: the detector misses all copies of a chain or none (same rate per copy)
+  miss_profiles: ""          # results/miss_profiles.json: measured miss patterns of real copy networks
+  miss_profile_key: ""       # e.g. paraphrase/new_information (multi_rewrites.py)
+  collusion_chains: 2        # independent liars per lie in the collusion attack
+  horizon_days: 30
+  chain_spread_days: 3       # independent chains of one claim start within this window
+  copy_spread_days: 1        # copies follow their origin within this window
+  chunk_size: 16             # reports per learning step
+  reports_k: 3               # accept after k reports
+  chains_k: 2                # accept after k independent chains (as the detector sees them)
+  judge_model: phi4          # real judge (Ollama) for judge_all / judge_chains
+  judge_url: http://localhost:11434
+  judge_max_reports: 10      # reports shown to the real judge at most (earliest first)
+  judge_max_tokens: 10       # answer length of the real judge (10 = setting of the first runs)

@@ -1,0 +1,447 @@
+== 1. copy measurement with boilerplate removed (CPU, ~30 min)
+200000 articles from 6877 outlets
+removed 1529 boilerplate lines
+  hashed 50000/200000
+  hashed 100000/200000
+  hashed 150000/200000
+  hashed 200000/200000
+57768 cross-outlet near-copy pairs, 12323 chains
+# How often is news copied across outlets? (CC-News)
+
+Articles: 200000 (196664 long enough to compare), outlets: 6877.
+Near-copy = estimated Jaccard similarity of 5-word shingles >= 0.6 (first 2,000 characters), between different outlets.
+
+- Articles that are a near-copy of an article from another outlet: **37171 (18.9%)**
+- Chains (groups of near-copies across outlets): 12323
+
+## Outlets per chain
+
+| outlets | chains |
+|---|---|
+| 2 | 7604 |
+| 3-5 | 3897 |
+| 6-10 | 671 |
+| 11-50 | 151 |
+| 51+ | 0 |
+
+## Outlets most often inside chains
+
+| outlet | articles in chains |
+|---|---|
+| www.dailymail.co.uk | 1047 |
+| www.reuters.com | 620 |
+| www.metronews.ca | 598 |
+| nationalpost.com | 590 |
+| www.channelnewsasia.com | 462 |
+| www.seattletimes.com | 444 |
+| www.therecord.com | 401 |
+| www.taiwannews.com.tw | 373 |
+| www.ctpost.com | 349 |
+| www.greenwichtime.com | 349 |
+| www.lmtonline.com | 317 |
+| www.thespec.com | 316 |
+| abcnews.go.com | 303 |
+| www.nzherald.co.nz | 293 |
+| www.foxnews.com | 287 |
+| www.myplainview.com | 283 |
+| in.reuters.com | 267 |
+| www.guelphmercury.com | 263 |
+| www.kitchenerpost.ca | 228 |
+| www.webnewswire.com | 204 |
+
+## Outlets that publish first in a chain (likely origin, e.g. wire services)
+
+| outlet | chains it opens |
+|---|---|
+| www.reuters.com | 326 |
+| www.metronews.ca | 232 |
+| www.seattletimes.com | 224 |
+| www.dailymail.co.uk | 215 |
+| abcnews.go.com | 191 |
+| www.greenwichtime.com | 138 |
+| www.lmtonline.com | 137 |
+| www.therecord.com | 132 |
+| www.ctpost.com | 131 |
+| www.myplainview.com | 123 |
+| www.thespec.com | 122 |
+| www.philly.com | 119 |
+| in.reuters.com | 99 |
+| 590kid.com | 96 |
+| uk.reuters.com | 93 |
+== 2. detector precision after stripping, recall on edited and phi4-reworded copies (~1.5 h)
+639860 articles; 1529 boilerplate lines
+  reworded 20/200
+  reworded 40/200
+  reworded 60/200
+  reworded 80/200
+  reworded 100/200
+  reworded 120/200
+  reworded 140/200
+  reworded 160/200
+  reworded 180/200
+  reworded 200/200
+# Copy detector, measured
+
+Detector: 5-word shingles of the first 2,000 characters, near-copy at Jaccard >= 0.6.
+
+## Precision on the 150 labelled detected pairs
+
+| | detected | real dependence | precision |
+|---|---|---|---|
+| as published | 150 | 123 | 0.82 |
+| boilerplate removed | 119 | 116 | 0.97 |
+
+Real dependences no longer detected after stripping: 7.
+
+## Recall on 200 articles
+
+| copy | linked to its original (recall) | median Jaccard |
+|---|---|---|
+| light edit (dateline removed, first line dropped, last 30% cut) | 0.92 | 0.81 |
+| reworded by phi4 | 0.00 | 0.04 |
+
+Median length of the rewrite relative to the original: 0.75.
+
+For run_copies.py: `--set copies.detector_recall=0.92 --set copies.paraphrase_evasion=1.00`
+== 3. judge experiment v2: 64-token answers, 5 copies, length-matched control, Unsure option, Gemini
+phi4: 4480 judgements to make
+  100/4480 (2.81 s each)
+  200/4480 (2.86 s each)
+  300/4480 (2.91 s each)
+  400/4480 (2.89 s each)
+  500/4480 (2.90 s each)
+  600/4480 (2.90 s each)
+  700/4480 (2.90 s each)
+  800/4480 (2.90 s each)
+  900/4480 (2.84 s each)
+  1000/4480 (2.81 s each)
+  1100/4480 (2.82 s each)
+  1200/4480 (2.82 s each)
+  1300/4480 (2.82 s each)
+  1400/4480 (2.84 s each)
+  1500/4480 (2.86 s each)
+  1600/4480 (2.89 s each)
+  1700/4480 (2.89 s each)
+  1800/4480 (2.88 s each)
+  1900/4480 (2.84 s each)
+  2000/4480 (2.84 s each)
+  2100/4480 (2.85 s each)
+  2200/4480 (2.86 s each)
+  2300/4480 (2.86 s each)
+  2400/4480 (2.86 s each)
+  2500/4480 (2.87 s each)
+  2600/4480 (2.88 s each)
+  2700/4480 (2.89 s each)
+  2800/4480 (2.90 s each)
+  2900/4480 (2.91 s each)
+  3000/4480 (2.91 s each)
+  3100/4480 (2.92 s each)
+  3200/4480 (2.92 s each)
+  3300/4480 (2.93 s each)
+  3400/4480 (2.93 s each)
+  3500/4480 (2.94 s each)
+  3600/4480 (2.95 s each)
+  3700/4480 (2.95 s each)
+  3800/4480 (2.95 s each)
+  3900/4480 (2.95 s each)
+  4000/4480 (2.95 s each)
+  4100/4480 (2.95 s each)
+  4200/4480 (2.95 s each)
+  4300/4480 (2.96 s each)
+  4400/4480 (2.96 s each)
+llama3.2: 4480 judgements to make
+  100/4480 (2.17 s each)
+  200/4480 (2.16 s each)
+  300/4480 (2.16 s each)
+  400/4480 (2.15 s each)
+  500/4480 (2.15 s each)
+  600/4480 (2.15 s each)
+  700/4480 (2.15 s each)
+  800/4480 (2.15 s each)
+  900/4480 (2.15 s each)
+  1000/4480 (2.15 s each)
+  1100/4480 (2.16 s each)
+  1200/4480 (2.16 s each)
+  1300/4480 (2.16 s each)
+  1400/4480 (2.16 s each)
+  1500/4480 (2.16 s each)
+  1600/4480 (2.16 s each)
+  1700/4480 (2.16 s each)
+  1800/4480 (2.16 s each)
+  1900/4480 (2.16 s each)
+  2000/4480 (2.16 s each)
+  2100/4480 (2.16 s each)
+  2200/4480 (2.16 s each)
+  2300/4480 (2.16 s each)
+  2400/4480 (2.16 s each)
+  2500/4480 (2.16 s each)
+  2600/4480 (2.16 s each)
+  2700/4480 (2.16 s each)
+  2800/4480 (2.16 s each)
+  2900/4480 (2.16 s each)
+  3000/4480 (2.16 s each)
+  3100/4480 (2.16 s each)
+  3200/4480 (2.16 s each)
+  3300/4480 (2.16 s each)
+  3400/4480 (2.16 s each)
+  3500/4480 (2.16 s each)
+  3600/4480 (2.16 s each)
+  3700/4480 (2.16 s each)
+  3800/4480 (2.16 s each)
+  3900/4480 (2.16 s each)
+  4000/4480 (2.16 s each)
+  4100/4480 (2.16 s each)
+  4200/4480 (2.16 s each)
+  4300/4480 (2.16 s each)
+  4400/4480 (2.16 s each)
+gemini:gemini-2.5-flash: 4480 judgements to make
+  100/4480 (1.06 s each)
+  200/4480 (1.00 s each)
+  300/4480 (1.00 s each)
+  400/4480 (0.98 s each)
+  500/4480 (0.93 s each)
+  600/4480 (0.90 s each)
+  700/4480 (0.88 s each)
+  800/4480 (0.88 s each)
+  900/4480 (0.87 s each)
+  1000/4480 (0.85 s each)
+  1100/4480 (0.84 s each)
+  1200/4480 (0.83 s each)
+  1300/4480 (0.83 s each)
+  1400/4480 (0.82 s each)
+  1500/4480 (0.81 s each)
+  1600/4480 (0.81 s each)
+  1700/4480 (0.80 s each)
+  1800/4480 (0.80 s each)
+  1900/4480 (0.79 s each)
+  2000/4480 (0.79 s each)
+  2100/4480 (0.79 s each)
+  2200/4480 (0.79 s each)
+  2300/4480 (0.78 s each)
+  2400/4480 (0.78 s each)
+  2500/4480 (0.78 s each)
+  2600/4480 (0.78 s each)
+  2700/4480 (0.78 s each)
+  2800/4480 (0.78 s each)
+  2900/4480 (0.77 s each)
+  3000/4480 (0.78 s each)
+  3100/4480 (0.78 s each)
+  3200/4480 (0.78 s each)
+  3300/4480 (0.78 s each)
+  3400/4480 (0.78 s each)
+  3500/4480 (0.78 s each)
+  3600/4480 (0.78 s each)
+  3700/4480 (0.79 s each)
+  3800/4480 (0.79 s each)
+  3900/4480 (0.79 s each)
+  4000/4480 (0.79 s each)
+  4100/4480 (0.79 s each)
+  4200/4480 (0.80 s each)
+  4300/4480 (0.80 s each)
+  4400/4480 (0.80 s each)
+gemini:gemini-2.5-pro: 4480 judgements to make
+  100/4480 (2.21 s each)
+  200/4480 (2.23 s each)
+  300/4480 (2.24 s each)
+  400/4480 (2.22 s each)
+  500/4480 (2.20 s each)
+  600/4480 (2.19 s each)
+  700/4480 (2.19 s each)
+  800/4480 (2.19 s each)
+  900/4480 (2.19 s each)
+  1000/4480 (2.20 s each)
+  1100/4480 (2.20 s each)
+  1200/4480 (2.20 s each)
+  1300/4480 (2.20 s each)
+  1400/4480 (2.21 s each)
+  1500/4480 (2.19 s each)
+  1600/4480 (2.19 s each)
+  1700/4480 (2.18 s each)
+  1800/4480 (2.19 s each)
+  1900/4480 (2.19 s each)
+  2000/4480 (2.21 s each)
+  2100/4480 (2.22 s each)
+  2200/4480 (2.22 s each)
+  2300/4480 (2.23 s each)
+  2400/4480 (2.22 s each)
+  2500/4480 (2.23 s each)
+  2600/4480 (2.24 s each)
+  2700/4480 (2.25 s each)
+  2800/4480 (2.25 s each)
+  2900/4480 (2.26 s each)
+  3000/4480 (2.25 s each)
+  3100/4480 (2.24 s each)
+  3200/4480 (2.24 s each)
+  3300/4480 (2.24 s each)
+  3400/4480 (2.24 s each)
+  3500/4480 (2.24 s each)
+  3600/4480 (2.23 s each)
+  3700/4480 (2.23 s each)
+  3800/4480 (2.22 s each)
+  3900/4480 (2.22 s each)
+  4000/4480 (2.21 s each)
+  4100/4480 (2.21 s each)
+  4200/4480 (2.20 s each)
+  4300/4480 (2.21 s each)
+  4400/4480 (2.21 s each)
+# Do LLM judges count copies as confirmations?
+
+Share of claims the judge calls **true** (n = 80 per cell unless noted; 95% Wilson intervals in verdicts.csv analyses). For lies lower is better; for truths higher is better. Unparsed answers count as false.
+
+## gemini:gemini-2.5-flash
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 |
+|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.06 | 0.15 | 0.31 | 0.26 | 0.26 | 0.51 | 0.30 | 0.16 | 0.09 |
+| true update of a known fact | 0.06 | 0.20 | 0.39 | 0.34 | 0.29 | 0.53 | 0.42 | 0.17 | 0.10 |
+| lie about an invented person | 0.00 | 0.93 | 1.00 | 1.00 | 1.00 | 1.00 | 0.97 | 0.79 | 0.20 |
+| true fact about an invented person | 0.00 | 0.99 | 1.00 | 0.99 | 1.00 | 1.00 | 0.99 | 0.68 | 0.31 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.04 / 0.21 / 0.75 | 0.21 / 0.20 / 0.59 | 0.50 / 0.04 / 0.46 | 0.68 / 0.04 / 0.29 | 0.16 / 0.30 / 0.54 |
+| true update of a known fact | 0.05 / 0.17 / 0.78 | 0.30 / 0.19 / 0.51 | 0.56 / 0.05 / 0.39 | 0.71 / 0.05 / 0.24 | 0.19 / 0.40 / 0.41 |
+| lie about an invented person | 0.00 / 1.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 0.51 / 0.49 / 0.00 |
+| true fact about an invented person | 0.00 / 1.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 0.36 / 0.64 / 0.00 |
+
+Unparsed answers: 0.
+
+## gemini:gemini-2.5-pro
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 |
+|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.06 | 0.12 | 0.16 | 0.17 | 0.16 | 0.31 | 0.30 | 0.01 | 0.01 |
+| true update of a known fact | 0.06 | 0.09 | 0.11 | 0.14 | 0.11 | 0.41 | 0.38 | 0.03 | 0.01 |
+| lie about an invented person | 0.01 | 0.64 | 0.76 | 0.86 | 0.85 | 1.00 | 0.99 | 0.00 | 0.00 |
+| true fact about an invented person | 0.00 | 0.69 | 0.84 | 0.90 | 0.90 | 1.00 | 1.00 | 0.00 | 0.00 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.05 / 0.19 / 0.76 | 0.09 / 0.31 / 0.60 | 0.12 / 0.35 / 0.53 | 0.28 / 0.28 / 0.45 | 0.01 / 0.62 / 0.36 |
+| true update of a known fact | 0.04 / 0.19 / 0.78 | 0.06 / 0.36 / 0.57 | 0.10 / 0.59 / 0.31 | 0.42 / 0.20 / 0.38 | 0.01 / 0.74 / 0.25 |
+| lie about an invented person | 0.00 / 1.00 / 0.00 | 0.11 / 0.89 / 0.00 | 0.59 / 0.41 / 0.00 | 1.00 / 0.00 / 0.00 | 0.00 / 1.00 / 0.00 |
+| true fact about an invented person | 0.00 / 1.00 / 0.00 | 0.12 / 0.88 / 0.00 | 0.62 / 0.38 / 0.00 | 1.00 / 0.00 / 0.00 | 0.00 / 1.00 / 0.00 |
+
+Unparsed answers: 29.
+
+## llama3.2
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 |
+|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.01 | 0.09 | 0.14 | 0.07 | 0.01 | 0.10 | 0.34 | 0.17 | 0.04 |
+| true update of a known fact | 0.00 | 0.03 | 0.24 | 0.10 | 0.03 | 0.11 | 0.41 | 0.24 | 0.07 |
+| lie about an invented person | 0.00 | 0.06 | 0.71 | 0.55 | 0.44 | 0.34 | 0.40 | 0.74 | 0.51 |
+| true fact about an invented person | 0.00 | 0.05 | 0.64 | 0.46 | 0.34 | 0.26 | 0.39 | 0.70 | 0.41 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.04 / 0.00 / 0.96 | 0.38 / 0.01 / 0.61 | 0.59 / 0.04 / 0.38 | 0.41 / 0.09 / 0.50 | 0.46 / 0.00 / 0.54 |
+| true update of a known fact | 0.03 / 0.00 / 0.97 | 0.34 / 0.01 / 0.65 | 0.54 / 0.09 / 0.38 | 0.46 / 0.10 / 0.44 | 0.49 / 0.00 / 0.51 |
+| lie about an invented person | 0.00 / 0.00 / 1.00 | 0.56 / 0.04 / 0.40 | 0.99 / 0.00 / 0.01 | 0.66 / 0.21 / 0.12 | 0.95 / 0.00 / 0.05 |
+| true fact about an invented person | 0.00 / 0.00 / 1.00 | 0.65 / 0.00 / 0.35 | 0.97 / 0.01 / 0.01 | 0.68 / 0.17 / 0.15 | 0.95 / 0.00 / 0.05 |
+
+Unparsed answers: 3.
+
+## phi4
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 |
+|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.07 | 0.10 | 0.24 | 0.25 | 0.20 | 0.25 | 0.26 | 0.21 | 0.20 |
+| true update of a known fact | 0.05 | 0.07 | 0.20 | 0.16 | 0.14 | 0.28 | 0.33 | 0.17 | 0.14 |
+| lie about an invented person | 0.00 | 0.21 | 0.90 | 0.78 | 0.50 | 0.97 | 0.93 | 0.82 | 0.57 |
+| true fact about an invented person | 0.00 | 0.25 | 0.88 | 0.79 | 0.53 | 0.99 | 0.94 | 0.81 | 0.56 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.05 / 0.20 / 0.75 | 0.11 / 0.26 / 0.62 | 0.25 / 0.21 / 0.54 | 0.34 / 0.12 / 0.54 | 0.23 / 0.26 / 0.51 |
+| true update of a known fact | 0.06 / 0.20 / 0.74 | 0.07 / 0.33 / 0.60 | 0.30 / 0.26 / 0.44 | 0.41 / 0.09 / 0.50 | 0.26 / 0.33 / 0.41 |
+| lie about an invented person | 0.00 / 0.99 / 0.01 | 0.33 / 0.68 / 0.00 | 0.96 / 0.04 / 0.00 | 1.00 / 0.00 / 0.00 | 0.88 / 0.12 / 0.00 |
+| true fact about an invented person | 0.00 / 1.00 / 0.00 | 0.31 / 0.69 / 0.00 | 0.99 / 0.01 / 0.00 | 1.00 / 0.00 / 0.00 | 0.88 / 0.12 / 0.00 |
+
+Unparsed answers: 35.
+
+== 4. verdict caches for the learning runs (no training)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   4%|4         | 14/338 [00:00<00:02, 110.67it/s]Loading weights:   8%|7         | 26/338 [00:00<00:05, 55.65it/s] Loading weights:  10%|9         | 33/338 [00:00<00:06, 46.32it/s]Loading weights:  12%|#1        | 39/338 [00:00<00:07, 40.95it/s]Loading weights:  13%|#3        | 44/338 [00:00<00:07, 40.48it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 348.40it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: gemini:gemini-2.5-flash (0 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       1228 new verdicts (1228 cached)
+  judge_chains    31 new verdicts (1259 cached)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_all       347 new verdicts (1606 cached)
+  judge_chains    181 new verdicts (1787 cached)
+
+seed=10 attack=collusion: 1325 reports (342 lie reports)
+  judge_all       249 new verdicts (2036 cached)
+  judge_chains    0 new verdicts (2036 cached)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       1178 new verdicts (3214 cached)
+  judge_chains    34 new verdicts (3248 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_all       327 new verdicts (3575 cached)
+  judge_chains    153 new verdicts (3728 cached)
+
+seed=11 attack=collusion: 1289 reports (342 lie reports)
+  judge_all       242 new verdicts (3970 cached)
+  judge_chains    0 new verdicts (3970 cached)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       1196 new verdicts (5166 cached)
+  judge_chains    26 new verdicts (5192 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_all       326 new verdicts (5518 cached)
+  judge_chains    177 new verdicts (5695 cached)
+
+seed=12 attack=collusion: 1319 reports (342 lie reports)
+  judge_all       232 new verdicts (5927 cached)
+  judge_chains    0 new verdicts (5927 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_gemini\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|          | 2/338 [00:00<00:25, 13.12it/s]Loading weights:   1%|1         | 4/338 [00:00<00:20, 16.40it/s]Loading weights:   3%|2         | 10/338 [00:00<00:09, 33.24it/s]Loading weights:   4%|4         | 14/338 [00:00<00:16, 19.34it/s]Loading weights:   5%|5         | 17/338 [00:00<00:15, 21.18it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 385.91it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (0 cached verdicts)
+
+seed=10 attack=copy: 3089 reports (1881 lie reports)
+  judge_all       1775 new verdicts (1775 cached)
+  judge_chains    77 new verdicts (1852 cached)
+
+seed=11 attack=copy: 3044 reports (1881 lie reports)
+  judge_all       1788 new verdicts (3640 cached)
+  judge_chains    94 new verdicts (3734 cached)
+
+seed=12 attack=copy: 3073 reports (1881 lie reports)
+  judge_all       1848 new verdicts (5582 cached)
+  judge_chains    75 new verdicts (5657 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_ss20\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|2         | 8/338 [00:00<00:06, 53.63it/s]Loading weights:   4%|4         | 14/338 [00:00<00:08, 37.20it/s]Loading weights:   6%|5         | 19/338 [00:00<00:09, 33.20it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 620.63it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (0 cached verdicts)
+
+seed=10 attack=copy: 2611 reports (1881 lie reports)
+  judge_all       1518 new verdicts (1518 cached)
+  judge_chains    61 new verdicts (1579 cached)
+
+seed=11 attack=copy: 2579 reports (1881 lie reports)
+  judge_all       1579 new verdicts (3158 cached)
+  judge_chains    76 new verdicts (3234 cached)
+
+seed=12 attack=copy: 2577 reports (1881 lie reports)
+  judge_all       1560 new verdicts (4794 cached)
+  judge_chains    67 new verdicts (4861 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_ss80\results.jsonl
+== phase 1 done

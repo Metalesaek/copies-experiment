@@ -1,0 +1,130 @@
+== verdicts (no training)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/338 [00:00<00:07, 46.26it/s]Loading weights:   3%|2         | 10/338 [00:00<00:10, 30.04it/s]Loading weights:   4%|4         | 14/338 [00:00<00:17, 18.94it/s]Loading weights:   5%|5         | 18/338 [00:00<00:14, 21.89it/s]Loading weights:   7%|7         | 24/338 [00:00<00:10, 28.79it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 348.13it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: llama3.2 (0 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_chains    1084 new verdicts (1084 cached)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    762 new verdicts (1846 cached)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_chains    1072 new verdicts (2918 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    780 new verdicts (3698 cached)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_chains    1057 new verdicts (4755 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    722 new verdicts (5477 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_llama\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   4%|3         | 12/338 [00:00<00:03, 87.19it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 1639.94it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: gemini:gemini-2.5-flash (0 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_chains    818 new verdicts (818 cached)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    365 new verdicts (1183 cached)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_chains    793 new verdicts (1976 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    358 new verdicts (2334 cached)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_chains    804 new verdicts (3138 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    356 new verdicts (3494 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_flash\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|1         | 4/338 [00:00<00:17, 18.83it/s]Loading weights:   3%|2         | 10/338 [00:00<00:18, 18.02it/s]Loading weights:   4%|3         | 12/338 [00:00<00:18, 18.05it/s]Loading weights:   5%|5         | 17/338 [00:00<00:12, 24.80it/s]Loading weights:   7%|6         | 23/338 [00:00<00:09, 32.22it/s]Loading weights:   8%|7         | 27/338 [00:01<00:10, 28.75it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 312.49it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: gemini:gemini-2.5-pro (0 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       1503 new verdicts (1503 cached)
+  judge_chains    69 new verdicts (1572 cached)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       1478 new verdicts (3050 cached)
+  judge_chains    81 new verdicts (3131 cached)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       1498 new verdicts (4629 cached)
+  judge_chains    68 new verdicts (4697 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_gemini_pro\results.jsonl
+   waiting 6 minutes for Ollama to unload its model and free the GPU
+== training with the saved verdicts
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<00:47,  7.07it/s]Loading weights:   2%|1         | 6/338 [00:00<00:15, 21.78it/s]Loading weights:   3%|3         | 11/338 [00:00<00:13, 24.76it/s]Loading weights:   4%|4         | 14/338 [00:00<00:14, 22.91it/s]Loading weights:   6%|6         | 21/338 [00:00<00:14, 22.36it/s]Loading weights:   8%|7         | 26/338 [00:01<00:12, 25.58it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 303.50it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: llama3.2 (5477 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.292 updates=0.200 lies_absorbed=0.398 accepted_true=0.248 accepted_lies=0.368 (8.2 min)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.302 updates=0.230 lies_absorbed=0.602 accepted_true=0.248 accepted_lies=0.620 (10.0 min)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.292 updates=0.120 lies_absorbed=0.327 accepted_true=0.230 accepted_lies=0.333 (8.0 min)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.285 updates=0.190 lies_absorbed=0.632 accepted_true=0.230 accepted_lies=0.626 (8.8 min)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.305 updates=0.210 lies_absorbed=0.357 accepted_true=0.240 accepted_lies=0.339 (7.7 min)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.287 updates=0.200 lies_absorbed=0.690 accepted_true=0.240 accepted_lies=0.684 (9.6 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_llama\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|1         | 6/338 [00:00<00:10, 31.30it/s]Loading weights:   3%|2         | 10/338 [00:00<00:21, 15.23it/s]Loading weights:   4%|4         | 15/338 [00:00<00:14, 22.44it/s]Loading weights:   7%|6         | 22/338 [00:00<00:09, 31.80it/s]Loading weights:   8%|7         | 27/338 [00:01<00:10, 29.34it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 303.83it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: gemini:gemini-2.5-flash (3494 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.835 updates=0.400 lies_absorbed=0.538 accepted_true=0.842 accepted_lies=0.632 (12.1 min)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.880 updates=0.410 lies_absorbed=0.713 accepted_true=0.842 accepted_lies=0.801 (12.5 min)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.860 updates=0.340 lies_absorbed=0.626 accepted_true=0.846 accepted_lies=0.649 (12.2 min)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.868 updates=0.360 lies_absorbed=0.737 accepted_true=0.846 accepted_lies=0.801 (11.4 min)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.855 updates=0.340 lies_absorbed=0.620 accepted_true=0.844 accepted_lies=0.655 (11.6 min)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.833 updates=0.370 lies_absorbed=0.743 accepted_true=0.844 accepted_lies=0.807 (11.8 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_flash\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|          | 2/338 [00:00<00:25, 12.97it/s]Loading weights:   3%|3         | 11/338 [00:00<00:14, 22.03it/s]Loading weights:   4%|3         | 13/338 [00:00<00:16, 19.98it/s]Loading weights:   5%|4         | 16/338 [00:00<00:15, 20.30it/s]Loading weights:   6%|5         | 19/338 [00:00<00:15, 21.06it/s]Loading weights:   7%|6         | 22/338 [00:01<00:18, 16.80it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 281.22it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: gemini:gemini-2.5-pro (4697 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       learn_new=0.750 updates=0.230 lies_absorbed=0.550 accepted_true=0.680 accepted_lies=0.626 (9.9 min)
+  judge_chains    learn_new=0.713 updates=0.210 lies_absorbed=0.474 accepted_true=0.664 accepted_lies=0.491 (9.3 min)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       learn_new=0.767 updates=0.200 lies_absorbed=0.596 accepted_true=0.692 accepted_lies=0.614 (9.4 min)
+  judge_chains    learn_new=0.762 updates=0.170 lies_absorbed=0.433 accepted_true=0.682 accepted_lies=0.468 (9.3 min)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       learn_new=0.740 updates=0.200 lies_absorbed=0.585 accepted_true=0.686 accepted_lies=0.643 (9.7 min)
+  judge_chains    learn_new=0.760 updates=0.210 lies_absorbed=0.456 accepted_true=0.676 accepted_lies=0.456 (9.5 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_gemini_pro\results.jsonl
+== phase 3 done

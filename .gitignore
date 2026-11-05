@@ -1,0 +1,29 @@
+.venv/
+__pycache__/
+*.pyc
+cache/
+.env
+*.key
+
+# Article text from CC-News belongs to the outlets: publish URLs and labels only
+# (rebuild texts with export_pair_texts.py / export_independent_pairs.py; labels: make_release_labels.py)
+data/*.xlsx
+data/annotation_pairs_texts.csv
+data/annotation_pairs_labelled.csv
+data/reworded_articles.jsonl
+data/multi_rewrites.jsonl
+data/chain_purity_examples*.csv
+
+# Earlier pilot ("whose truth gets learned"), not part of this paper
+check_coverage.py
+build_facts.py
+pilot_knowledge.py
+data/facts.csv
+data/facts_summary.md
+results/coverage.csv
+results/coverage_summary.md
+results/pilot_*.csv
+results/pilot_summary.md
+
+# First judge run (10 answer tokens), replaced by results/judge_copies_v2
+results/judge_copies/

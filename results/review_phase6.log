@@ -1,0 +1,324 @@
+Using Python 3.11.11 environment at: C:\Users\metal\Documents\sura_experiment\.venv
+Audited 2 packages in 58ms
+== 1. copy networks: 400 phi4 rewrites (~3 h), then the detectors on them
+0 rewrites to generate
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:111: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  f"| {(p.sum(1) > 0).mean():.2f} | {1 - (1 - rate) ** N_COPIES:.2f} |")
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:111: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  f"| {(p.sum(1) > 0).mean():.2f} | {1 - (1 - rate) ** N_COPIES:.2f} |")
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:111: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  f"| {(p.sum(1) > 0).mean():.2f} | {1 - (1 - rate) ** N_COPIES:.2f} |")
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:110: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  md.append(f"| {attack} | {det} | {rate:.2f} | {(p.sum(1) == 0).mean():.2f} | {(p.sum(1) == N_COPIES).mean():.2f} "
+C:\Users\metal\Documents\whose_truth\multi_rewrites.py:111: Pandas4Warning: Starting with pandas version 4.0 all arguments of sum will be keyword-only.
+  f"| {(p.sum(1) > 0).mean():.2f} | {1 - (1 - rate) ** N_COPIES:.2f} |")
+# Copy networks of real rewrites: what the detectors miss
+
+20 originals, 10 rewrites each by phi4 (temperature 0.8, seeds 1-10), linked in stream order to the origin or any copy already linked.
+
+| attack | detector | copies missed (share) | networks with 0 missed | with all 10 missed | P(at least one missed), observed | same, if misses were independent |
+|---|---|---|---|---|---|---|
+| paraphrase | text | 1.00 | 0.00 | 1.00 | 1.00 | 1.00 |
+| paraphrase | new_information | 0.06 | 0.85 | 0.05 | 0.15 | 0.46 |
+| adaptive | text | 1.00 | 0.00 | 1.00 | 1.00 | 1.00 |
+| adaptive | new_information | 0.20 | 0.50 | 0.05 | 0.50 | 0.90 |
+== 2. baselines (CPU, ~30 min; downloads two embedding models and a cross-encoder)
+{'rewrite': 200, 'adaptive': 200, 'comparison': 167} confirmed: 11
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|##########| 103/103 [00:00<?, ?it/s]
+Batches:   0%|          | 0/36 [00:00<?, ?it/s]Batches:   3%|2         | 1/36 [00:00<00:05,  6.48it/s]Batches:  22%|##2       | 8/36 [00:00<00:00, 36.14it/s]Batches:  42%|####1     | 15/36 [00:00<00:00, 48.70it/s]Batches:  61%|######1   | 22/36 [00:00<00:00, 55.89it/s]Batches:  81%|########  | 29/36 [00:00<00:00, 60.19it/s]Batches: 100%|##########| 36/36 [00:00<00:00, 54.30it/s]
+Batches:   0%|          | 0/36 [00:00<?, ?it/s]Batches:  22%|##2       | 8/36 [00:00<00:00, 67.52it/s]Batches:  42%|####1     | 15/36 [00:00<00:00, 68.80it/s]Batches:  61%|######1   | 22/36 [00:00<00:00, 69.02it/s]Batches:  83%|########3 | 30/36 [00:00<00:00, 70.03it/s]Batches: 100%|##########| 36/36 [00:00<00:00, 68.86it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  63%|######2   | 125/199 [00:00<00:00, 1214.65it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 1135.42it/s]
+Batches:   0%|          | 0/36 [00:00<?, ?it/s]Batches:   3%|2         | 1/36 [00:00<00:05,  6.75it/s]Batches:   6%|5         | 2/36 [00:00<00:05,  6.74it/s]Batches:   8%|8         | 3/36 [00:00<00:04,  7.03it/s]Batches:  11%|#1        | 4/36 [00:00<00:04,  7.06it/s]Batches:  14%|#3        | 5/36 [00:00<00:04,  7.12it/s]Batches:  17%|#6        | 6/36 [00:00<00:04,  7.28it/s]Batches:  19%|#9        | 7/36 [00:00<00:04,  7.22it/s]Batches:  22%|##2       | 8/36 [00:01<00:03,  7.06it/s]Batches:  25%|##5       | 9/36 [00:01<00:03,  7.15it/s]Batches:  28%|##7       | 10/36 [00:01<00:03,  7.10it/s]Batches:  31%|###       | 11/36 [00:01<00:03,  7.11it/s]Batches:  33%|###3      | 12/36 [00:01<00:03,  7.23it/s]Batches:  36%|###6      | 13/36 [00:01<00:03,  7.29it/s]Batches:  39%|###8      | 14/36 [00:01<00:02,  7.33it/s]Batches:  42%|####1     | 15/36 [00:02<00:02,  7.34it/s]Batches:  44%|####4     | 16/36 [00:02<00:02,  7.46it/s]Batches:  47%|####7     | 17/36 [00:02<00:02,  7.42it/s]Batches:  50%|#####     | 18/36 [00:02<00:02,  7.54it/s]Batches:  53%|#####2    | 19/36 [00:02<00:02,  7.53it/s]Batches:  56%|#####5    | 20/36 [00:02<00:02,  7.70it/s]Batches:  58%|#####8    | 21/36 [00:02<00:01,  7.61it/s]Batches:  61%|######1   | 22/36 [00:03<00:01,  7.67it/s]Batches:  64%|######3   | 23/36 [00:03<00:01,  7.61it/s]Batches:  67%|######6   | 24/36 [00:03<00:01,  7.42it/s]Batches:  69%|######9   | 25/36 [00:03<00:01,  7.35it/s]Batches:  72%|#######2  | 26/36 [00:03<00:01,  7.33it/s]Batches:  75%|#######5  | 27/36 [00:03<00:01,  7.38it/s]Batches:  78%|#######7  | 28/36 [00:03<00:01,  7.22it/s]Batches:  81%|########  | 29/36 [00:03<00:00,  7.37it/s]Batches:  83%|########3 | 30/36 [00:04<00:00,  7.24it/s]Batches:  86%|########6 | 31/36 [00:04<00:00,  7.30it/s]Batches:  89%|########8 | 32/36 [00:04<00:00,  7.09it/s]Batches:  92%|#########1| 33/36 [00:04<00:00,  7.01it/s]Batches:  94%|#########4| 34/36 [00:04<00:00,  6.97it/s]Batches:  97%|#########7| 35/36 [00:04<00:00,  6.99it/s]Batches: 100%|##########| 36/36 [00:04<00:00,  7.38it/s]
+Batches:   0%|          | 0/36 [00:00<?, ?it/s]Batches:   3%|2         | 1/36 [00:00<00:04,  7.31it/s]Batches:   6%|5         | 2/36 [00:00<00:04,  7.54it/s]Batches:   8%|8         | 3/36 [00:00<00:04,  7.17it/s]Batches:  11%|#1        | 4/36 [00:00<00:04,  7.18it/s]Batches:  14%|#3        | 5/36 [00:00<00:04,  7.18it/s]Batches:  17%|#6        | 6/36 [00:00<00:04,  7.28it/s]Batches:  19%|#9        | 7/36 [00:00<00:04,  7.17it/s]Batches:  22%|##2       | 8/36 [00:01<00:03,  7.10it/s]Batches:  25%|##5       | 9/36 [00:01<00:03,  7.20it/s]Batches:  28%|##7       | 10/36 [00:01<00:03,  7.13it/s]Batches:  31%|###       | 11/36 [00:01<00:03,  7.10it/s]Batches:  33%|###3      | 12/36 [00:01<00:03,  7.20it/s]Batches:  36%|###6      | 13/36 [00:01<00:03,  7.28it/s]Batches:  39%|###8      | 14/36 [00:01<00:03,  7.11it/s]Batches:  42%|####1     | 15/36 [00:02<00:02,  7.12it/s]Batches:  44%|####4     | 16/36 [00:02<00:02,  7.22it/s]Batches:  47%|####7     | 17/36 [00:02<00:02,  7.12it/s]Batches:  50%|#####     | 18/36 [00:02<00:02,  7.23it/s]Batches:  53%|#####2    | 19/36 [00:02<00:02,  7.13it/s]Batches:  56%|#####5    | 20/36 [00:02<00:02,  6.97it/s]Batches:  58%|#####8    | 21/36 [00:02<00:02,  7.05it/s]Batches:  61%|######1   | 22/36 [00:03<00:01,  7.17it/s]Batches:  64%|######3   | 23/36 [00:03<00:01,  6.97it/s]Batches:  67%|######6   | 24/36 [00:03<00:01,  6.95it/s]Batches:  69%|######9   | 25/36 [00:03<00:01,  6.99it/s]Batches:  72%|#######2  | 26/36 [00:03<00:01,  6.85it/s]Batches:  75%|#######5  | 27/36 [00:03<00:01,  6.88it/s]Batches:  78%|#######7  | 28/36 [00:03<00:01,  6.93it/s]Batches:  81%|########  | 29/36 [00:04<00:01,  6.94it/s]Batches:  83%|########3 | 30/36 [00:04<00:00,  6.87it/s]Batches:  86%|########6 | 31/36 [00:04<00:00,  6.96it/s]Batches:  89%|########8 | 32/36 [00:04<00:00,  6.96it/s]Batches:  92%|#########1| 33/36 [00:04<00:00,  7.12it/s]Batches:  94%|#########4| 34/36 [00:04<00:00,  7.08it/s]Batches:  97%|#########7| 35/36 [00:04<00:00,  7.56it/s]Batches: 100%|##########| 36/36 [00:04<00:00,  7.27it/s]
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  58%|#####7    | 116/201 [00:00<00:00, 1060.31it/s]Loading weights: 100%|##########| 201/201 [00:00<00:00, 1012.89it/s]
+Batches:   0%|          | 0/71 [00:00<?, ?it/s]Batches:   4%|4         | 3/71 [00:00<00:03, 20.59it/s]Batches:   8%|8         | 6/71 [00:00<00:04, 15.27it/s]Batches:  11%|#1        | 8/71 [00:00<00:04, 14.40it/s]Batches:  14%|#4        | 10/71 [00:00<00:04, 13.87it/s]Batches:  17%|#6        | 12/71 [00:00<00:04, 13.92it/s]Batches:  20%|#9        | 14/71 [00:00<00:04, 13.14it/s]Batches:  23%|##2       | 16/71 [00:01<00:04, 13.04it/s]Batches:  25%|##5       | 18/71 [00:01<00:04, 12.99it/s]Batches:  28%|##8       | 20/71 [00:01<00:03, 13.09it/s]Batches:  31%|###       | 22/71 [00:01<00:03, 13.29it/s]Batches:  34%|###3      | 24/71 [00:01<00:03, 13.63it/s]Batches:  37%|###6      | 26/71 [00:01<00:03, 13.69it/s]Batches:  39%|###9      | 28/71 [00:02<00:03, 13.78it/s]Batches:  42%|####2     | 30/71 [00:02<00:03, 13.65it/s]Batches:  45%|####5     | 32/71 [00:02<00:02, 13.77it/s]Batches:  48%|####7     | 34/71 [00:02<00:02, 13.92it/s]Batches:  51%|#####     | 36/71 [00:02<00:02, 14.05it/s]Batches:  54%|#####3    | 38/71 [00:02<00:02, 14.50it/s]Batches:  56%|#####6    | 40/71 [00:02<00:02, 14.48it/s]Batches:  59%|#####9    | 42/71 [00:03<00:02, 14.27it/s]Batches:  62%|######1   | 44/71 [00:03<00:01, 14.28it/s]Batches:  65%|######4   | 46/71 [00:03<00:01, 14.33it/s]Batches:  68%|######7   | 48/71 [00:03<00:01, 14.60it/s]Batches:  70%|#######   | 50/71 [00:03<00:01, 14.40it/s]Batches:  73%|#######3  | 52/71 [00:03<00:01, 14.71it/s]Batches:  76%|#######6  | 54/71 [00:03<00:01, 14.85it/s]Batches:  79%|#######8  | 56/71 [00:03<00:01, 14.64it/s]Batches:  82%|########1 | 58/71 [00:04<00:00, 14.77it/s]Batches:  85%|########4 | 60/71 [00:04<00:00, 14.88it/s]Batches:  87%|########7 | 62/71 [00:04<00:00, 14.60it/s]Batches:  90%|######### | 64/71 [00:04<00:00, 14.74it/s]Batches:  93%|#########2| 66/71 [00:04<00:00, 14.83it/s]Batches:  96%|#########5| 68/71 [00:04<00:00, 14.92it/s]Batches:  99%|#########8| 70/71 [00:04<00:00, 14.96it/s]Batches: 100%|##########| 71/71 [00:04<00:00, 14.26it/s]
+# Baselines: recognising rewritten copies
+
+Positives: 200 phi4 rewrites and 200 adaptive rewrites of their original. Negatives: 167 automatically selected comparison reports of the same event, of which 11 are confirmed independent by hand. Copy score: higher = more likely a copy. AUC = P(copy scores higher than non-copy). Recall at 5% FA: threshold set so that 5% of the comparison reports are flagged.
+
+| detector | AUC rewrite vs all | AUC rewrite vs confirmed | AUC adaptive vs all | AUC adaptive vs confirmed | recall at 5% FA, rewrite | recall at 5% FA, adaptive |
+|---|---|---|---|---|---|---|
+| jaccard_5gram | 0.85 | 0.72 | 0.86 | 0.75 | 0.06 | 0.11 |
+| tfidf_cosine | 0.94 | 0.92 | 0.93 | 0.90 | 0.62 | 0.53 |
+| emb_minilm | 0.91 | 0.70 | 0.92 | 0.72 | 0.50 | 0.52 |
+| emb_mpnet | 0.91 | 0.77 | 0.91 | 0.77 | 0.46 | 0.47 |
+| cross_encoder | 0.86 | 0.80 | 0.88 | 0.83 | 0.36 | 0.43 |
+| entity_overlap | 0.97 | 0.98 | 0.95 | 0.97 | 0.91 | 0.78 |
+| quote_overlap | 0.57 | 0.52 | 0.60 | 0.55 | 0.18 | 0.18 |
+| ours_1_minus_novelty | 0.97 | 0.98 | 0.94 | 0.94 | 0.91 | 0.68 |
+| hybrid_ours_plus_emb_minilm | 0.96 | 0.93 | 0.94 | 0.88 | 0.81 | 0.69 |
+
+Medians of each score:
+
+|                             |   adaptive |   comparison |   comparison (confirmed) |   rewrite |
+|:----------------------------|-----------:|-------------:|-------------------------:|----------:|
+| jaccard_5gram               |       0.04 |         0    |                     0    |      0.04 |
+| tfidf_cosine                |       0.63 |         0.16 |                     0.47 |      0.65 |
+| emb_minilm                  |       0.89 |         0.46 |                     0.84 |      0.89 |
+| emb_mpnet                   |       0.93 |         0.51 |                     0.88 |      0.93 |
+| cross_encoder               |       0.61 |         0.49 |                     0.54 |      0.6  |
+| entity_overlap              |       0.74 |         0.14 |                     0.38 |      0.81 |
+| quote_overlap               |       0    |         0    |                     0    |      0    |
+| ours_1_minus_novelty        |       0.69 |         0.14 |                     0.38 |      0.79 |
+| hybrid_ours_plus_emb_minilm |       0.6  |         0.14 |                     0.34 |      0.69 |
+== 3/4. verdicts (no training)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|          | 3/338 [00:00<00:19, 17.43it/s]Loading weights:   1%|1         | 5/338 [00:00<00:22, 14.49it/s]Loading weights:   2%|2         | 8/338 [00:00<00:22, 14.36it/s]Loading weights:   3%|2         | 10/338 [00:00<00:25, 13.03it/s]Loading weights:   6%|6         | 21/338 [00:00<00:10, 28.91it/s]Loading weights:   8%|7         | 26/338 [00:01<00:10, 29.79it/s]Loading weights:   9%|8         | 29/338 [00:01<00:10, 28.71it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 279.42it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (2734 cached verdicts)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    0 new verdicts (2734 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    0 new verdicts (2734 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    0 new verdicts (2734 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_e2e\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|          | 2/338 [00:00<00:58,  5.74it/s]Loading weights:   2%|2         | 7/338 [00:00<00:19, 17.22it/s]Loading weights:   3%|2         | 10/338 [00:00<00:17, 18.61it/s]Loading weights:   4%|3         | 13/338 [00:00<00:17, 18.33it/s]Loading weights:   5%|5         | 17/338 [00:00<00:13, 23.05it/s]Loading weights:   7%|6         | 23/338 [00:01<00:10, 29.86it/s]Loading weights:   8%|7         | 27/338 [00:01<00:10, 28.31it/s]Loading weights:   9%|9         | 31/338 [00:01<00:11, 27.13it/s]Loading weights:  12%|#1        | 40/338 [00:01<00:08, 36.75it/s]Loading weights:  13%|#3        | 44/338 [00:01<00:09, 30.24it/s]Loading weights:  14%|#4        | 48/338 [00:01<00:10, 27.16it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 174.83it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (3173 cached verdicts)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    0 new verdicts (3173 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    0 new verdicts (3173 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    0 new verdicts (3173 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_e2e_adaptive\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|1         | 6/338 [00:00<00:06, 53.84it/s]Loading weights:   4%|3         | 12/338 [00:00<00:08, 39.84it/s]Loading weights:   5%|5         | 17/338 [00:00<00:10, 29.35it/s]Loading weights:   6%|6         | 21/338 [00:00<00:10, 29.08it/s]Loading weights:   9%|8         | 30/338 [00:00<00:07, 43.14it/s]Loading weights:  10%|#         | 35/338 [00:01<00:10, 29.47it/s]Loading weights:  12%|#1        | 39/338 [00:01<00:11, 26.82it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 260.01it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: llama3.2 (20827 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    done
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    done
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    done
+
+seed=13 attack=copy: 2846 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    0 new verdicts (20827 cached)
+
+seed=14 attack=copy: 2876 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    0 new verdicts (20827 cached)
+
+seed=15 attack=copy: 2829 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    0 new verdicts (20827 cached)
+
+seed=16 attack=copy: 2855 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    0 new verdicts (20827 cached)
+
+seed=17 attack=copy: 2870 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    0 new verdicts (20827 cached)
+
+seed=18 attack=copy: 2854 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    0 new verdicts (20827 cached)
+
+seed=19 attack=copy: 2798 reports (1881 lie reports)
+  judge_all       0 new verdicts (20827 cached)
+  judge_chains    0 new verdicts (20827 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_llama\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|          | 3/338 [00:00<00:19, 17.08it/s]Loading weights:   2%|2         | 7/338 [00:00<00:23, 13.84it/s]Loading weights:   4%|4         | 15/338 [00:00<00:15, 20.61it/s]Loading weights:   6%|5         | 20/338 [00:00<00:12, 25.06it/s]Loading weights:   8%|7         | 26/338 [00:01<00:10, 29.51it/s]Loading weights:   9%|9         | 32/338 [00:01<00:09, 31.80it/s]Loading weights:  11%|#         | 36/338 [00:01<00:10, 29.10it/s]Loading weights:  12%|#1        | 40/338 [00:01<00:11, 25.99it/s]Loading weights:  13%|#2        | 43/338 [00:01<00:11, 26.24it/s]Loading weights:  14%|#3        | 46/338 [00:01<00:10, 26.69it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 183.38it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: gemini:gemini-2.5-flash (3494 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       434 new verdicts (3928 cached)
+  judge_chains    done
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       405 new verdicts (4333 cached)
+  judge_chains    done
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       403 new verdicts (4736 cached)
+  judge_chains    done
+
+seed=13 attack=copy: 2846 reports (1881 lie reports)
+  judge_all       1228 new verdicts (5964 cached)
+  judge_chains    56 new verdicts (6020 cached)
+
+seed=14 attack=copy: 2876 reports (1881 lie reports)
+  judge_all       1158 new verdicts (7178 cached)
+  judge_chains    42 new verdicts (7220 cached)
+
+seed=15 attack=copy: 2829 reports (1881 lie reports)
+  judge_all       1235 new verdicts (8455 cached)
+  judge_chains    47 new verdicts (8502 cached)
+
+seed=16 attack=copy: 2855 reports (1881 lie reports)
+  judge_all       1196 new verdicts (9698 cached)
+  judge_chains    43 new verdicts (9741 cached)
+
+seed=17 attack=copy: 2870 reports (1881 lie reports)
+  judge_all       1236 new verdicts (10977 cached)
+  judge_chains    46 new verdicts (11023 cached)
+
+seed=18 attack=copy: 2854 reports (1881 lie reports)
+  judge_all       1250 new verdicts (12273 cached)
+  judge_chains    58 new verdicts (12331 cached)
+
+seed=19 attack=copy: 2798 reports (1881 lie reports)
+  judge_all       1187 new verdicts (13518 cached)
+  judge_chains    41 new verdicts (13559 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_flash\results.jsonl
+   waiting 6 minutes for Ollama to unload its model and free the GPU
+== 3. training with measured miss patterns (~1.7 h)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 5486.04it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (2734 cached verdicts)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.583 updates=0.200 lies_absorbed=0.287 accepted_true=0.488 accepted_lies=0.246 (7.4 min)
+  chains_k        learn_new=0.475 updates=0.560 lies_absorbed=0.240 accepted_true=0.486 accepted_lies=0.211 (7.9 min)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.550 updates=0.140 lies_absorbed=0.170 accepted_true=0.484 accepted_lies=0.146 (7.8 min)
+  chains_k        learn_new=0.507 updates=0.400 lies_absorbed=0.175 accepted_true=0.468 accepted_lies=0.135 (7.6 min)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.552 updates=0.170 lies_absorbed=0.222 accepted_true=0.486 accepted_lies=0.199 (8.6 min)
+  chains_k        learn_new=0.465 updates=0.570 lies_absorbed=0.211 accepted_true=0.494 accepted_lies=0.164 (8.3 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_e2e\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   3%|2         | 9/338 [00:00<00:05, 64.00it/s]Loading weights:   5%|4         | 16/338 [00:00<00:08, 37.73it/s]Loading weights:   6%|6         | 21/338 [00:00<00:13, 24.18it/s]Loading weights:   7%|7         | 24/338 [00:00<00:15, 19.79it/s]Loading weights:   8%|7         | 27/338 [00:01<00:14, 20.93it/s]Loading weights:   9%|8         | 30/338 [00:01<00:14, 21.17it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 272.87it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (3173 cached verdicts)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.565 updates=0.210 lies_absorbed=0.392 accepted_true=0.488 accepted_lies=0.444 (8.1 min)
+  chains_k        learn_new=0.487 updates=0.540 lies_absorbed=0.614 accepted_true=0.486 accepted_lies=0.626 (8.9 min)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.545 updates=0.150 lies_absorbed=0.327 accepted_true=0.484 accepted_lies=0.316 (8.0 min)
+  chains_k        learn_new=0.497 updates=0.400 lies_absorbed=0.450 accepted_true=0.468 accepted_lies=0.444 (8.5 min)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.590 updates=0.180 lies_absorbed=0.427 accepted_true=0.486 accepted_lies=0.427 (8.8 min)
+  chains_k        learn_new=0.453 updates=0.570 lies_absorbed=0.526 accepted_true=0.494 accepted_lies=0.538 (8.8 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_e2e_adaptive\results.jsonl
+== 4. training, 10 seeds for Llama 3.2 and Gemini Flash (~4.8 h)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/338 [00:00<00:09, 34.99it/s]Loading weights:   4%|3         | 13/338 [00:00<00:09, 35.78it/s]Loading weights:   5%|5         | 17/338 [00:00<00:12, 26.60it/s]Loading weights:   7%|7         | 25/338 [00:00<00:08, 38.83it/s]Loading weights:   9%|8         | 30/338 [00:00<00:09, 33.65it/s]Loading weights:  10%|#         | 35/338 [00:01<00:08, 36.53it/s]Loading weights:  12%|#2        | 41/338 [00:01<00:07, 39.49it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 294.99it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: llama3.2 (20827 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       learn_new=0.340 updates=0.240 lies_absorbed=0.561 accepted_true=0.294 accepted_lies=0.573 (7.9 min)
+  judge_chains    done
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       learn_new=0.338 updates=0.180 lies_absorbed=0.556 accepted_true=0.264 accepted_lies=0.538 (7.2 min)
+  judge_chains    done
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       learn_new=0.345 updates=0.230 lies_absorbed=0.596 accepted_true=0.286 accepted_lies=0.579 (7.4 min)
+  judge_chains    done
+
+seed=13 attack=copy: 2846 reports (1881 lie reports)
+  judge_all       learn_new=0.352 updates=0.280 lies_absorbed=0.550 accepted_true=0.288 accepted_lies=0.561 (7.9 min)
+  judge_chains    learn_new=0.320 updates=0.270 lies_absorbed=0.386 accepted_true=0.262 accepted_lies=0.345 (6.8 min)
+
+seed=14 attack=copy: 2876 reports (1881 lie reports)
+  judge_all       learn_new=0.330 updates=0.260 lies_absorbed=0.649 accepted_true=0.280 accepted_lies=0.643 (8.1 min)
+  judge_chains    learn_new=0.275 updates=0.270 lies_absorbed=0.439 accepted_true=0.238 accepted_lies=0.421 (6.5 min)
+
+seed=15 attack=copy: 2829 reports (1881 lie reports)
+  judge_all       learn_new=0.325 updates=0.170 lies_absorbed=0.532 accepted_true=0.250 accepted_lies=0.556 (7.4 min)
+  judge_chains    learn_new=0.302 updates=0.170 lies_absorbed=0.304 accepted_true=0.220 accepted_lies=0.287 (6.6 min)
+
+seed=16 attack=copy: 2855 reports (1881 lie reports)
+  judge_all       learn_new=0.328 updates=0.200 lies_absorbed=0.608 accepted_true=0.280 accepted_lies=0.596 (7.2 min)
+  judge_chains    learn_new=0.312 updates=0.170 lies_absorbed=0.404 accepted_true=0.246 accepted_lies=0.368 (6.2 min)
+
+seed=17 attack=copy: 2870 reports (1881 lie reports)
+  judge_all       learn_new=0.320 updates=0.260 lies_absorbed=0.550 accepted_true=0.288 accepted_lies=0.544 (7.8 min)
+  judge_chains    learn_new=0.310 updates=0.270 lies_absorbed=0.345 accepted_true=0.250 accepted_lies=0.304 (6.2 min)
+
+seed=18 attack=copy: 2854 reports (1881 lie reports)
+  judge_all       learn_new=0.355 updates=0.240 lies_absorbed=0.579 accepted_true=0.270 accepted_lies=0.573 (7.8 min)
+  judge_chains    learn_new=0.300 updates=0.230 lies_absorbed=0.363 accepted_true=0.244 accepted_lies=0.351 (6.4 min)
+
+seed=19 attack=copy: 2798 reports (1881 lie reports)
+  judge_all       learn_new=0.360 updates=0.340 lies_absorbed=0.567 accepted_true=0.298 accepted_lies=0.538 (8.0 min)
+  judge_chains    learn_new=0.312 updates=0.290 lies_absorbed=0.333 accepted_true=0.258 accepted_lies=0.339 (6.9 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_llama\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|1         | 5/338 [00:00<00:06, 49.90it/s]Loading weights:   3%|2         | 10/338 [00:00<00:12, 25.28it/s]Loading weights:   4%|4         | 14/338 [00:00<00:14, 21.71it/s]Loading weights:   5%|5         | 17/338 [00:00<00:16, 19.47it/s]Loading weights:   7%|6         | 23/338 [00:00<00:11, 27.61it/s]Loading weights:   8%|7         | 27/338 [00:01<00:16, 19.24it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 268.48it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: gemini:gemini-2.5-flash (13559 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       learn_new=0.890 updates=0.420 lies_absorbed=0.690 accepted_true=0.850 accepted_lies=0.749 (9.2 min)
+  judge_chains    done
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       learn_new=0.875 updates=0.360 lies_absorbed=0.673 accepted_true=0.852 accepted_lies=0.743 (9.8 min)
+  judge_chains    done
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       learn_new=0.875 updates=0.370 lies_absorbed=0.713 accepted_true=0.846 accepted_lies=0.749 (10.1 min)
+  judge_chains    done
+
+seed=13 attack=copy: 2846 reports (1881 lie reports)
+  judge_all       learn_new=0.860 updates=0.420 lies_absorbed=0.684 accepted_true=0.850 accepted_lies=0.737 (9.8 min)
+  judge_chains    learn_new=0.855 updates=0.420 lies_absorbed=0.632 accepted_true=0.850 accepted_lies=0.673 (9.8 min)
+
+seed=14 attack=copy: 2876 reports (1881 lie reports)
+  judge_all       learn_new=0.840 updates=0.440 lies_absorbed=0.702 accepted_true=0.860 accepted_lies=0.772 (9.9 min)
+  judge_chains    learn_new=0.828 updates=0.400 lies_absorbed=0.614 accepted_true=0.858 accepted_lies=0.678 (9.9 min)
+
+seed=15 attack=copy: 2829 reports (1881 lie reports)
+  judge_all       learn_new=0.870 updates=0.390 lies_absorbed=0.702 accepted_true=0.840 accepted_lies=0.719 (9.8 min)
+  judge_chains    learn_new=0.892 updates=0.350 lies_absorbed=0.637 accepted_true=0.838 accepted_lies=0.632 (9.9 min)
+
+seed=16 attack=copy: 2855 reports (1881 lie reports)
+  judge_all       learn_new=0.843 updates=0.320 lies_absorbed=0.702 accepted_true=0.834 accepted_lies=0.754 (9.6 min)
+  judge_chains    learn_new=0.845 updates=0.320 lies_absorbed=0.626 accepted_true=0.832 accepted_lies=0.649 (9.6 min)
+
+seed=17 attack=copy: 2870 reports (1881 lie reports)
+  judge_all       learn_new=0.855 updates=0.400 lies_absorbed=0.702 accepted_true=0.864 accepted_lies=0.713 (9.6 min)
+  judge_chains    learn_new=0.845 updates=0.400 lies_absorbed=0.637 accepted_true=0.854 accepted_lies=0.643 (9.6 min)
+
+seed=18 attack=copy: 2854 reports (1881 lie reports)
+  judge_all       learn_new=0.820 updates=0.340 lies_absorbed=0.632 accepted_true=0.842 accepted_lies=0.713 (9.7 min)
+  judge_chains    learn_new=0.863 updates=0.310 lies_absorbed=0.626 accepted_true=0.836 accepted_lies=0.637 (9.7 min)
+
+seed=19 attack=copy: 2798 reports (1881 lie reports)
+  judge_all       learn_new=0.860 updates=0.370 lies_absorbed=0.708 accepted_true=0.828 accepted_lies=0.760 (9.3 min)
+  judge_chains    learn_new=0.850 updates=0.370 lies_absorbed=0.608 accepted_true=0.820 accepted_lies=0.626 (9.4 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_measured_flash\results.jsonl
+== phase 6 done

@@ -1,0 +1,456 @@
+== 1. chain purity (CPU, ~40 min)
+199998 articles hashed
+| 0.6, LSH candidates as in Section 3 | 76857 | 12243 | 37705 | 18.9% |
+| 0.5 | 86296 | 12803 | 39819 | 19.9% |
+| 0.6 | 74271 | 12107 | 37101 | 18.6% |
+| 0.7 | 66358 | 11513 | 34704 | 17.4% |
+# Copy chains: threshold sensitivity and purity
+
+200000 articles, 199998 long enough to compare.
+
+| Jaccard threshold | cross-outlet pairs | chains | articles in chains | share of articles |
+|---|---|---|---|---|
+| 0.6, LSH candidates as in Section 3 | 76857 | 12243 | 37705 | 18.9% |
+| 0.5 | 86296 | 12803 | 39819 | 19.9% |
+| 0.6 | 74271 | 12107 | 37101 | 18.6% |
+| 0.7 | 66358 | 11513 | 34704 | 17.4% |
+
+## Purity of the chains at 0.6
+
+Chains of two articles: 7133 (one direct near-copy pair each, pure by construction). Chains of three or more: 4974, holding 22835 articles.
+
+| measure (chains of 3+) | value |
+|---|---|
+| median of the mean pairwise similarity | 0.95 |
+| share of chains whose weakest pair is below 0.6 (joined through others) | 0.05 |
+| share of chains whose weakest pair is below 0.3 | 0.00 |
+| articles in such chains (below 0.3) | 0 |
+| articles that are a direct near-copy of the chain's earliest article (mean over chains) | 0.99 |
+| same, weighted by chain size | 0.98 |
+
+Examples for manual inspection: data/chain_purity_examples.csv (30 chains with a pair below 0.3).
+196664 articles hashed
+| 0.6, LSH candidates as in Section 3 | 57768 | 12323 | 37171 | 18.9% |
+| 0.5 | 63532 | 12828 | 39128 | 19.9% |
+| 0.6 | 55464 | 12210 | 36562 | 18.6% |
+| 0.7 | 50068 | 11632 | 34300 | 17.4% |
+# Copy chains: threshold sensitivity and purity (boilerplate removed)
+
+200000 articles, 196664 long enough to compare.
+
+| Jaccard threshold | cross-outlet pairs | chains | articles in chains | share of articles |
+|---|---|---|---|---|
+| 0.6, LSH candidates as in Section 3 | 57768 | 12323 | 37171 | 18.9% |
+| 0.5 | 63532 | 12828 | 39128 | 19.9% |
+| 0.6 | 55464 | 12210 | 36562 | 18.6% |
+| 0.7 | 50068 | 11632 | 34300 | 17.4% |
+
+## Purity of the chains at 0.6
+
+Chains of two articles: 7196 (one direct near-copy pair each, pure by construction). Chains of three or more: 5014, holding 22170 articles.
+
+| measure (chains of 3+) | value |
+|---|---|
+| median of the mean pairwise similarity | 0.95 |
+| share of chains whose weakest pair is below 0.6 (joined through others) | 0.05 |
+| share of chains whose weakest pair is below 0.3 | 0.00 |
+| articles in such chains (below 0.3) | 0 |
+| articles that are a direct near-copy of the chain's earliest article (mean over chains) | 0.99 |
+| same, weighted by chain size | 0.98 |
+
+Examples for manual inspection: data/chain_purity_examples_strip.csv (30 chains with a pair below 0.3).
+== 2. judge probes (4 judges x 6 conditions x 320 claims, ~1.5 h, Gemini about $3-5)
+phi4: 1920 judgements to make
+  100/1920 (2.93 s each)
+  200/1920 (2.86 s each)
+  300/1920 (2.77 s each)
+  400/1920 (2.82 s each)
+  500/1920 (2.87 s each)
+  600/1920 (2.88 s each)
+  700/1920 (2.88 s each)
+  800/1920 (2.88 s each)
+  900/1920 (2.82 s each)
+  1000/1920 (2.80 s each)
+  1100/1920 (2.84 s each)
+  1200/1920 (2.88 s each)
+  1300/1920 (2.92 s each)
+  1400/1920 (2.92 s each)
+  1500/1920 (2.91 s each)
+  1600/1920 (2.90 s each)
+  1700/1920 (2.90 s each)
+  1800/1920 (2.89 s each)
+  1900/1920 (2.86 s each)
+llama3.2: 1920 judgements to make
+  100/1920 (2.18 s each)
+  200/1920 (2.16 s each)
+  300/1920 (2.16 s each)
+  400/1920 (2.16 s each)
+  500/1920 (2.16 s each)
+  600/1920 (2.16 s each)
+  700/1920 (2.16 s each)
+  800/1920 (2.16 s each)
+  900/1920 (2.16 s each)
+  1000/1920 (2.16 s each)
+  1100/1920 (2.16 s each)
+  1200/1920 (2.16 s each)
+  1300/1920 (2.16 s each)
+  1400/1920 (2.16 s each)
+  1500/1920 (2.16 s each)
+  1600/1920 (2.15 s each)
+  1700/1920 (2.15 s each)
+  1800/1920 (2.15 s each)
+  1900/1920 (2.15 s each)
+gemini:gemini-2.5-flash: 1920 judgements to make
+  100/1920 (0.64 s each)
+  200/1920 (0.63 s each)
+  300/1920 (0.63 s each)
+  400/1920 (0.63 s each)
+  500/1920 (0.63 s each)
+  600/1920 (0.63 s each)
+  700/1920 (0.63 s each)
+  800/1920 (0.63 s each)
+  900/1920 (0.63 s each)
+  1000/1920 (0.63 s each)
+  1100/1920 (0.63 s each)
+  1200/1920 (0.63 s each)
+  1300/1920 (0.63 s each)
+  1400/1920 (0.63 s each)
+  1500/1920 (0.63 s each)
+  1600/1920 (0.63 s each)
+  1700/1920 (0.63 s each)
+  1800/1920 (0.63 s each)
+  1900/1920 (0.63 s each)
+gemini:gemini-2.5-pro: 1920 judgements to make
+  100/1920 (2.72 s each)
+  200/1920 (2.70 s each)
+  300/1920 (2.73 s each)
+  400/1920 (2.77 s each)
+  500/1920 (2.78 s each)
+  600/1920 (2.79 s each)
+  700/1920 (2.74 s each)
+  800/1920 (2.72 s each)
+  900/1920 (2.73 s each)
+  1000/1920 (2.73 s each)
+  1100/1920 (2.72 s each)
+  1200/1920 (2.71 s each)
+  1300/1920 (2.70 s each)
+  1400/1920 (2.69 s each)
+  1500/1920 (2.69 s each)
+  1600/1920 (2.69 s each)
+  1700/1920 (2.69 s each)
+  1800/1920 (2.67 s each)
+  1900/1920 (2.63 s each)
+# Do LLM judges count copies as confirmations?
+
+Share of claims the judge calls **true** (n = 80 per cell unless noted; 95% Wilson intervals in verdicts.csv analyses). For lies lower is better; for truths higher is better. Unparsed answers count as false.
+
+## gemini:gemini-2.5-flash
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 | sameoutlet3 | copies3_falseindep | paraphrase3_note | copies3_table | copies3_known | indep3_known |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.06 | 0.15 | 0.31 | 0.26 | 0.26 | 0.51 | 0.30 | 0.16 | 0.09 | 0.35 | 0.26 | 0.28 | 0.12 | 0.26 | 0.36 |
+| true update of a known fact | 0.06 | 0.20 | 0.39 | 0.34 | 0.29 | 0.53 | 0.42 | 0.17 | 0.10 | 0.44 | 0.30 | 0.38 | 0.15 | 0.31 | 0.46 |
+| lie about an invented person | 0.00 | 0.93 | 1.00 | 1.00 | 1.00 | 1.00 | 0.97 | 0.79 | 0.20 | 1.00 | 0.95 | 0.97 | 0.49 | 1.00 | 1.00 |
+| true fact about an invented person | 0.00 | 0.99 | 1.00 | 0.99 | 1.00 | 1.00 | 0.99 | 0.68 | 0.31 | 1.00 | 0.94 | 1.00 | 0.56 | 1.00 | 1.00 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.04 / 0.21 / 0.75 | 0.21 / 0.20 / 0.59 | 0.50 / 0.04 / 0.46 | 0.68 / 0.04 / 0.29 | 0.16 / 0.30 / 0.54 |
+| true update of a known fact | 0.05 / 0.17 / 0.78 | 0.30 / 0.19 / 0.51 | 0.56 / 0.05 / 0.39 | 0.71 / 0.05 / 0.24 | 0.19 / 0.40 / 0.41 |
+| lie about an invented person | 0.00 / 1.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 0.51 / 0.49 / 0.00 |
+| true fact about an invented person | 0.00 / 1.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 1.00 / 0.00 / 0.00 | 0.36 / 0.64 / 0.00 |
+
+Unparsed answers: 0.
+
+## gemini:gemini-2.5-pro
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 | sameoutlet3 | copies3_falseindep | paraphrase3_note | copies3_table | copies3_known | indep3_known |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.06 | 0.12 | 0.16 | 0.17 | 0.16 | 0.31 | 0.30 | 0.01 | 0.01 | 0.12 | 0.21 | 0.12 | 0.01 | 0.19 | 0.26 |
+| true update of a known fact | 0.06 | 0.09 | 0.11 | 0.14 | 0.11 | 0.41 | 0.38 | 0.03 | 0.01 | 0.14 | 0.23 | 0.07 | 0.01 | 0.15 | 0.31 |
+| lie about an invented person | 0.01 | 0.64 | 0.76 | 0.86 | 0.85 | 1.00 | 0.99 | 0.00 | 0.00 | 0.61 | 0.69 | 0.36 | 0.01 | 0.50 | 0.97 |
+| true fact about an invented person | 0.00 | 0.69 | 0.84 | 0.90 | 0.90 | 1.00 | 1.00 | 0.00 | 0.00 | 0.74 | 0.82 | 0.49 | 0.00 | 0.71 | 1.00 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.05 / 0.19 / 0.76 | 0.09 / 0.31 / 0.60 | 0.12 / 0.35 / 0.53 | 0.28 / 0.28 / 0.45 | 0.01 / 0.62 / 0.36 |
+| true update of a known fact | 0.04 / 0.19 / 0.78 | 0.06 / 0.36 / 0.57 | 0.10 / 0.59 / 0.31 | 0.42 / 0.20 / 0.38 | 0.01 / 0.74 / 0.25 |
+| lie about an invented person | 0.00 / 1.00 / 0.00 | 0.11 / 0.89 / 0.00 | 0.59 / 0.41 / 0.00 | 1.00 / 0.00 / 0.00 | 0.00 / 1.00 / 0.00 |
+| true fact about an invented person | 0.00 / 1.00 / 0.00 | 0.12 / 0.88 / 0.00 | 0.62 / 0.38 / 0.00 | 1.00 / 0.00 / 0.00 | 0.00 / 1.00 / 0.00 |
+
+Unparsed answers: 71.
+
+## llama3.2
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 | sameoutlet3 | copies3_falseindep | paraphrase3_note | copies3_table | copies3_known | indep3_known |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.01 | 0.09 | 0.14 | 0.07 | 0.01 | 0.10 | 0.34 | 0.17 | 0.04 | 0.05 | 0.15 | 0.20 | 0.05 | 0.19 | 0.10 |
+| true update of a known fact | 0.00 | 0.03 | 0.24 | 0.10 | 0.03 | 0.11 | 0.41 | 0.24 | 0.07 | 0.09 | 0.17 | 0.23 | 0.06 | 0.24 | 0.11 |
+| lie about an invented person | 0.00 | 0.06 | 0.71 | 0.55 | 0.44 | 0.34 | 0.40 | 0.74 | 0.51 | 0.00 | 0.75 | 0.57 | 0.42 | 0.69 | 0.34 |
+| true fact about an invented person | 0.00 | 0.05 | 0.64 | 0.46 | 0.34 | 0.26 | 0.39 | 0.70 | 0.41 | 0.00 | 0.75 | 0.59 | 0.35 | 0.61 | 0.20 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.04 / 0.00 / 0.96 | 0.38 / 0.01 / 0.61 | 0.59 / 0.04 / 0.38 | 0.41 / 0.09 / 0.50 | 0.46 / 0.00 / 0.54 |
+| true update of a known fact | 0.03 / 0.00 / 0.97 | 0.34 / 0.01 / 0.65 | 0.54 / 0.09 / 0.38 | 0.46 / 0.10 / 0.44 | 0.49 / 0.00 / 0.51 |
+| lie about an invented person | 0.00 / 0.00 / 1.00 | 0.56 / 0.04 / 0.40 | 0.99 / 0.00 / 0.01 | 0.66 / 0.21 / 0.12 | 0.95 / 0.00 / 0.05 |
+| true fact about an invented person | 0.00 / 0.00 / 1.00 | 0.65 / 0.00 / 0.35 | 0.97 / 0.01 / 0.01 | 0.68 / 0.17 / 0.15 | 0.95 / 0.00 / 0.05 |
+
+Unparsed answers: 3.
+
+## phi4
+
+| claim kind | none | copies1 | copies3 | copies5 | copies10 | indep3 | filler3 | labelled3 | labelled10 | sameoutlet3 | copies3_falseindep | paraphrase3_note | copies3_table | copies3_known | indep3_known |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| known-fact lie | 0.07 | 0.10 | 0.24 | 0.25 | 0.20 | 0.25 | 0.26 | 0.21 | 0.20 | 0.20 | 0.25 | 0.25 | 0.25 | 0.17 | 0.21 |
+| true update of a known fact | 0.05 | 0.07 | 0.20 | 0.16 | 0.14 | 0.28 | 0.33 | 0.17 | 0.14 | 0.14 | 0.23 | 0.29 | 0.26 | 0.20 | 0.24 |
+| lie about an invented person | 0.00 | 0.21 | 0.90 | 0.78 | 0.50 | 0.97 | 0.93 | 0.82 | 0.57 | 0.62 | 0.84 | 0.99 | 0.88 | 0.55 | 0.95 |
+| true fact about an invented person | 0.00 | 0.25 | 0.88 | 0.79 | 0.53 | 0.99 | 0.94 | 0.81 | 0.56 | 0.70 | 0.86 | 1.00 | 0.94 | 0.61 | 0.96 |
+
+With the Unsure option (True / Unsure / False):
+
+| claim kind | none+unsure | copies1+unsure | copies3+unsure | indep3+unsure | labelled3+unsure |
+|---|---|---|---|---|---|
+| known-fact lie | 0.05 / 0.20 / 0.75 | 0.11 / 0.26 / 0.62 | 0.25 / 0.21 / 0.54 | 0.34 / 0.12 / 0.54 | 0.23 / 0.26 / 0.51 |
+| true update of a known fact | 0.06 / 0.20 / 0.74 | 0.07 / 0.33 / 0.60 | 0.30 / 0.26 / 0.44 | 0.41 / 0.09 / 0.50 | 0.26 / 0.33 / 0.41 |
+| lie about an invented person | 0.00 / 0.99 / 0.01 | 0.33 / 0.68 / 0.00 | 0.96 / 0.04 / 0.00 | 1.00 / 0.00 / 0.00 | 0.88 / 0.12 / 0.00 |
+| true fact about an invented person | 0.00 / 1.00 / 0.00 | 0.31 / 0.69 / 0.00 | 0.99 / 0.01 / 0.00 | 1.00 / 0.00 / 0.00 | 0.88 / 0.12 / 0.00 |
+
+Unparsed answers: 38.
+
+== 3. re-analysis
+wrote C:\Users\metal\Documents\whose_truth\results\judge_reanalysis.md
+   new-information detector: reworded copies missed 0.095, false merge 0.05389221556886228
+== 4/5. phi4 verdicts (no training)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   3%|2         | 10/338 [00:00<00:05, 57.06it/s]Loading weights:   6%|6         | 21/338 [00:00<00:04, 77.01it/s]Loading weights:   9%|8         | 30/338 [00:00<00:05, 55.66it/s]Loading weights:  11%|#         | 37/338 [00:00<00:06, 49.88it/s]Loading weights:  13%|#2        | 43/338 [00:00<00:06, 46.13it/s]Loading weights:  30%|##9       | 100/338 [00:00<00:01, 163.70it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 353.64it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (4062 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       776 new verdicts (4838 cached)
+  judge_chains    done
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_all       581 new verdicts (5419 cached)
+  judge_chains    done
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       798 new verdicts (6217 cached)
+  judge_chains    done
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_all       578 new verdicts (6795 cached)
+  judge_chains    done
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       796 new verdicts (7591 cached)
+  judge_chains    done
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_all       530 new verdicts (8121 cached)
+  judge_chains    done
+
+seed=13 attack=copy: 2846 reports (1881 lie reports)
+  judge_all       1696 new verdicts (9817 cached)
+  judge_chains    118 new verdicts (9935 cached)
+
+seed=13 attack=paraphrase: 2846 reports (1881 lie reports)
+  judge_all       589 new verdicts (10524 cached)
+  judge_chains    86 new verdicts (10610 cached)
+
+seed=14 attack=copy: 2876 reports (1881 lie reports)
+  judge_all       1590 new verdicts (12200 cached)
+  judge_chains    101 new verdicts (12301 cached)
+
+seed=14 attack=paraphrase: 2876 reports (1881 lie reports)
+  judge_all       470 new verdicts (12771 cached)
+  judge_chains    71 new verdicts (12842 cached)
+
+seed=15 attack=copy: 2829 reports (1881 lie reports)
+  judge_all       1702 new verdicts (14544 cached)
+  judge_chains    91 new verdicts (14635 cached)
+
+seed=15 attack=paraphrase: 2829 reports (1881 lie reports)
+  judge_all       683 new verdicts (15318 cached)
+  judge_chains    77 new verdicts (15395 cached)
+
+seed=16 attack=copy: 2855 reports (1881 lie reports)
+  judge_all       1690 new verdicts (17085 cached)
+  judge_chains    105 new verdicts (17190 cached)
+
+seed=16 attack=paraphrase: 2855 reports (1881 lie reports)
+  judge_all       594 new verdicts (17784 cached)
+  judge_chains    83 new verdicts (17867 cached)
+
+seed=17 attack=copy: 2870 reports (1881 lie reports)
+  judge_all       1704 new verdicts (19571 cached)
+  judge_chains    100 new verdicts (19671 cached)
+
+seed=17 attack=paraphrase: 2870 reports (1881 lie reports)
+  judge_all       579 new verdicts (20250 cached)
+  judge_chains    67 new verdicts (20317 cached)
+
+seed=18 attack=copy: 2854 reports (1881 lie reports)
+  judge_all       1686 new verdicts (22003 cached)
+  judge_chains    113 new verdicts (22116 cached)
+
+seed=18 attack=paraphrase: 2854 reports (1881 lie reports)
+  judge_all       596 new verdicts (22712 cached)
+  judge_chains    93 new verdicts (22805 cached)
+
+seed=19 attack=copy: 2798 reports (1881 lie reports)
+  judge_all       1638 new verdicts (24443 cached)
+  judge_chains    93 new verdicts (24536 cached)
+
+seed=19 attack=paraphrase: 2798 reports (1881 lie reports)
+  judge_all       535 new verdicts (25071 cached)
+  judge_chains    72 new verdicts (25143 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_novelty\results.jsonl
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   1%|          | 2/338 [00:00<00:18, 18.52it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 2734.25it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (0 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_chains    977 new verdicts (977 cached)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    90 new verdicts (1067 cached)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_chains    891 new verdicts (1958 cached)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    44 new verdicts (2002 cached)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_chains    934 new verdicts (2936 cached)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    66 new verdicts (3002 cached)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_correlated\results.jsonl
+   waiting 6 minutes for Ollama to unload its model and free the GPU
+== 4. training, 10 seeds (~4.5 h)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   4%|3         | 12/338 [00:00<00:03, 95.82it/s]Loading weights:   7%|6         | 22/338 [00:00<00:06, 50.42it/s]Loading weights:   9%|8         | 29/338 [00:00<00:09, 32.55it/s]Loading weights:  10%|#         | 35/338 [00:00<00:09, 32.25it/s]Loading weights:  12%|#1        | 40/338 [00:01<00:08, 34.63it/s]Loading weights:  14%|#3        | 47/338 [00:01<00:07, 40.81it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 272.34it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (25143 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_all       learn_new=0.562 updates=0.190 lies_absorbed=0.509 accepted_true=0.514 accepted_lies=0.579 (8.2 min)
+  judge_chains    done
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_all       learn_new=0.585 updates=0.230 lies_absorbed=0.637 accepted_true=0.514 accepted_lies=0.667 (8.9 min)
+  judge_chains    done
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_all       learn_new=0.570 updates=0.140 lies_absorbed=0.550 accepted_true=0.506 accepted_lies=0.567 (8.4 min)
+  judge_chains    done
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_all       learn_new=0.502 updates=0.150 lies_absorbed=0.585 accepted_true=0.506 accepted_lies=0.649 (8.6 min)
+  judge_chains    done
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_all       learn_new=0.593 updates=0.170 lies_absorbed=0.573 accepted_true=0.514 accepted_lies=0.567 (8.9 min)
+  judge_chains    done
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_all       learn_new=0.575 updates=0.180 lies_absorbed=0.690 accepted_true=0.514 accepted_lies=0.702 (9.2 min)
+  judge_chains    done
+
+seed=13 attack=copy: 2846 reports (1881 lie reports)
+  judge_all       learn_new=0.590 updates=0.260 lies_absorbed=0.596 accepted_true=0.506 accepted_lies=0.567 (8.5 min)
+  judge_chains    learn_new=0.535 updates=0.230 lies_absorbed=0.404 accepted_true=0.474 accepted_lies=0.339 (8.0 min)
+
+seed=13 attack=paraphrase: 2846 reports (1881 lie reports)
+  judge_all       learn_new=0.598 updates=0.220 lies_absorbed=0.614 accepted_true=0.506 accepted_lies=0.667 (8.5 min)
+  judge_chains    learn_new=0.527 updates=0.230 lies_absorbed=0.450 accepted_true=0.474 accepted_lies=0.444 (8.1 min)
+
+seed=14 attack=copy: 2876 reports (1881 lie reports)
+  judge_all       learn_new=0.573 updates=0.200 lies_absorbed=0.579 accepted_true=0.510 accepted_lies=0.632 (8.7 min)
+  judge_chains    learn_new=0.515 updates=0.220 lies_absorbed=0.386 accepted_true=0.468 accepted_lies=0.386 (8.0 min)
+
+seed=14 attack=paraphrase: 2876 reports (1881 lie reports)
+  judge_all       learn_new=0.570 updates=0.220 lies_absorbed=0.696 accepted_true=0.510 accepted_lies=0.743 (8.8 min)
+  judge_chains    learn_new=0.527 updates=0.210 lies_absorbed=0.480 accepted_true=0.468 accepted_lies=0.485 (8.2 min)
+
+seed=15 attack=copy: 2829 reports (1881 lie reports)
+  judge_all       learn_new=0.588 updates=0.260 lies_absorbed=0.497 accepted_true=0.518 accepted_lies=0.520 (8.5 min)
+  judge_chains    learn_new=0.562 updates=0.240 lies_absorbed=0.333 accepted_true=0.486 accepted_lies=0.281 (8.3 min)
+
+seed=15 attack=paraphrase: 2829 reports (1881 lie reports)
+  judge_all       learn_new=0.600 updates=0.280 lies_absorbed=0.608 accepted_true=0.518 accepted_lies=0.596 (8.7 min)
+  judge_chains    learn_new=0.580 updates=0.240 lies_absorbed=0.386 accepted_true=0.486 accepted_lies=0.368 (8.3 min)
+
+seed=16 attack=copy: 2855 reports (1881 lie reports)
+  judge_all       learn_new=0.588 updates=0.180 lies_absorbed=0.550 accepted_true=0.516 accepted_lies=0.556 (8.8 min)
+  judge_chains    learn_new=0.568 updates=0.160 lies_absorbed=0.368 accepted_true=0.498 accepted_lies=0.363 (8.3 min)
+
+seed=16 attack=paraphrase: 2855 reports (1881 lie reports)
+  judge_all       learn_new=0.613 updates=0.160 lies_absorbed=0.637 accepted_true=0.516 accepted_lies=0.649 (8.9 min)
+  judge_chains    learn_new=0.595 updates=0.160 lies_absorbed=0.450 accepted_true=0.498 accepted_lies=0.450 (8.5 min)
+
+seed=17 attack=copy: 2870 reports (1881 lie reports)
+  judge_all       learn_new=0.583 updates=0.270 lies_absorbed=0.556 accepted_true=0.518 accepted_lies=0.544 (9.0 min)
+  judge_chains    learn_new=0.550 updates=0.230 lies_absorbed=0.310 accepted_true=0.482 accepted_lies=0.287 (8.2 min)
+
+seed=17 attack=paraphrase: 2870 reports (1881 lie reports)
+  judge_all       learn_new=0.585 updates=0.280 lies_absorbed=0.678 accepted_true=0.518 accepted_lies=0.678 (9.0 min)
+  judge_chains    learn_new=0.562 updates=0.240 lies_absorbed=0.421 accepted_true=0.482 accepted_lies=0.368 (8.3 min)
+
+seed=18 attack=copy: 2854 reports (1881 lie reports)
+  judge_all       learn_new=0.598 updates=0.220 lies_absorbed=0.556 accepted_true=0.518 accepted_lies=0.556 (9.2 min)
+  judge_chains    learn_new=0.560 updates=0.240 lies_absorbed=0.322 accepted_true=0.508 accepted_lies=0.298 (8.9 min)
+
+seed=18 attack=paraphrase: 2854 reports (1881 lie reports)
+  judge_all       learn_new=0.573 updates=0.260 lies_absorbed=0.632 accepted_true=0.518 accepted_lies=0.655 (9.2 min)
+  judge_chains    learn_new=0.542 updates=0.250 lies_absorbed=0.444 accepted_true=0.508 accepted_lies=0.421 (9.0 min)
+
+seed=19 attack=copy: 2798 reports (1881 lie reports)
+  judge_all       learn_new=0.545 updates=0.180 lies_absorbed=0.550 accepted_true=0.480 accepted_lies=0.585 (9.0 min)
+  judge_chains    learn_new=0.542 updates=0.180 lies_absorbed=0.363 accepted_true=0.460 accepted_lies=0.363 (8.4 min)
+
+seed=19 attack=paraphrase: 2798 reports (1881 lie reports)
+  judge_all       learn_new=0.573 updates=0.210 lies_absorbed=0.678 accepted_true=0.480 accepted_lies=0.702 (9.4 min)
+  judge_chains    learn_new=0.550 updates=0.170 lies_absorbed=0.433 accepted_true=0.460 accepted_lies=0.439 (8.7 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_novelty\results.jsonl
+== 5. training, correlated misses (~1.7 h)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|1         | 6/338 [00:00<00:06, 53.38it/s]Loading weights:   4%|4         | 15/338 [00:00<00:07, 42.73it/s]Loading weights: 100%|##########| 338/338 [00:00<00:00, 812.83it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (3002 cached verdicts)
+
+seed=10 attack=copy: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.550 updates=0.190 lies_absorbed=0.234 accepted_true=0.486 accepted_lies=0.205 (8.1 min)
+  chains_k        learn_new=0.468 updates=0.520 lies_absorbed=0.170 accepted_true=0.478 accepted_lies=0.129 (8.2 min)
+
+seed=10 attack=paraphrase: 2864 reports (1881 lie reports)
+  judge_chains    learn_new=0.570 updates=0.200 lies_absorbed=0.216 accepted_true=0.486 accepted_lies=0.216 (8.3 min)
+  chains_k        learn_new=0.468 updates=0.520 lies_absorbed=0.170 accepted_true=0.478 accepted_lies=0.129 (8.2 min)
+
+seed=11 attack=copy: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.568 updates=0.150 lies_absorbed=0.135 accepted_true=0.482 accepted_lies=0.117 (7.7 min)
+  chains_k        learn_new=0.515 updates=0.380 lies_absorbed=0.117 accepted_true=0.460 accepted_lies=0.058 (7.8 min)
+
+seed=11 attack=paraphrase: 2828 reports (1881 lie reports)
+  judge_chains    learn_new=0.560 updates=0.150 lies_absorbed=0.129 accepted_true=0.482 accepted_lies=0.123 (8.1 min)
+  chains_k        learn_new=0.495 updates=0.380 lies_absorbed=0.099 accepted_true=0.460 accepted_lies=0.076 (7.3 min)
+
+seed=12 attack=copy: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.593 updates=0.160 lies_absorbed=0.152 accepted_true=0.486 accepted_lies=0.111 (8.4 min)
+  chains_k        learn_new=0.505 updates=0.550 lies_absorbed=0.123 accepted_true=0.494 accepted_lies=0.058 (8.3 min)
+
+seed=12 attack=paraphrase: 2858 reports (1881 lie reports)
+  judge_chains    learn_new=0.565 updates=0.160 lies_absorbed=0.187 accepted_true=0.486 accepted_lies=0.129 (8.5 min)
+  chains_k        learn_new=0.507 updates=0.560 lies_absorbed=0.135 accepted_true=0.494 accepted_lies=0.076 (8.1 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\copies_correlated\results.jsonl
+== phase 5 done

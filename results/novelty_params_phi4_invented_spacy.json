@@ -1,0 +1,7 @@
+{
+ "rewriter": "phi4+invented",
+ "extractor": "spacy",
+ "threshold": 0.4,
+ "recall_reworded": 0.745,
+ "false_merge": 0.05389221556886228
+}
