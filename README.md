@@ -1,7 +1,7 @@
 # Copies Are Not Confirmations
 
 Code, labels and results for *Copies Are Not Confirmations: How News Duplication Fools LLM Judges and
-Continual Learners* (Abdelkader Metales and Miriam Grabenheinrich, caaise GmbH, 2026).
+Continual Learners* (Abdelkader Metales and Miriam Grabenheinrich, caaise GmbH; Aicha Metales, Djilali Liabes University of Sidi Bel Abbes; 2026).
 
 Many news reports of a claim are copies of one source (wire stories, syndication, press releases). We
 measure how common copying is in CC-News, test whether LLM judges treat copies as independent
@@ -34,12 +34,12 @@ identifies articles by URL (and headline); the scripts rebuild the texts from CC
 
 | Section | Scripts | Results |
 | --- | --- | --- |
-| 3 How news is copied | `check_copies.py` (MinHash chains, `--strip` removes boilerplate), `measure_detector.py`, `chain_purity.py`, `compute_iaa.py` | `results/copies_summary*.md`, `data/copy_chains*.csv`, `results/detector_measured.md`, `results/chain_purity*.md` |
+| 3 How news is copied | `check_copies.py` (MinHash chains, `--strip` removes boilerplate), `measure_detector.py`, `chain_purity.py`, `compute_iaa.py`, `window_ablation.py` | `results/copies_summary*.md`, `data/copy_chains*.csv`, `results/detector_measured.md`, `results/chain_purity*.md`, `results/window_ablation.md` |
 | 4 Do LLM judges count copies? | `judge_copies.py` (`--unsure`, `--probes`), `reanalyse_judges.py` | `results/judge_copies_v2/`, `results/judge_reanalysis.md` |
 | 5 Learning from a simulated stream | `copies_world.py`, `run_copies.py`, `test_copies.py` | `results/copies_*/results.jsonl` (one line per system, attack and seed) |
-| 6 Catching reworded copies | `novelty_test.py`, `adaptive_rewrites.py`, `baselines.py`, `multi_rewrites.py`, `make_independent_set.py` | `results/novelty_test*.md`, `results/baselines.md`, `results/multi_rewrites.md`, `results/miss_profiles.json`, `results/indep_set.md` |
+| 6 Catching reworded copies | `novelty_test.py`, `adaptive_rewrites.py`, `baselines.py`, `multi_rewrites.py`, `make_independent_set.py`, `other_rewriters.py`, `auc_ci.py` | `results/novelty_test*.md`, `results/baselines.md`, `results/multi_rewrites.md`, `results/miss_profiles.json`, `results/indep_set.md`, `results/other_rewriters.md`, `results/auc_ci.md` |
 
-The run scripts `review_phase1.sh` to `review_phase7.sh` reproduce the experiments in the order they were
+The run scripts `review_phase1.sh` to `review_phase8.sh` reproduce the experiments in the order they were
 run; their logs are in `results/review_phase*.log`. Each learning run folder holds the judge verdict cache
 (`judge_cache_*.jsonl`), so the runs can be repeated without calling the judges again.
 
@@ -48,9 +48,9 @@ run; their logs are in `results/review_phase*.log`. Each learning run folder hol
 | File | Content |
 | --- | --- |
 | `data/labels_dependence.csv` | 300 pairs of Section 3 (150 detected near-copies, 150 controls): AI-drafted dependence label |
-| `data/labels_iaa.csv` | 100 of them labelled blind by both authors (author1 = Metales, author2 = Grabenheinrich) and the AI draft |
+| `data/labels_iaa.csv` | 100 of them labelled blind by the first two authors (author1 = Metales, author2 = Grabenheinrich) and the AI draft |
 | `data/labels_independent_check.csv` | 40 automatically selected comparison pairs of Section 6, checked by hand |
-| `data/labels_indep_set.csv` | 250 held-out same-event pairs of Section 6, labelled blind by both authors |
+| `data/labels_indep_set.csv` | 250 held-out same-event pairs of Section 6, labelled blind by the first two authors |
 
 `make_release_labels.py` writes these files from the local annotation sheets, which contain article text
 and are not published.

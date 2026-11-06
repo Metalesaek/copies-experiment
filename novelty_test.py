@@ -152,7 +152,8 @@ def main():
         si = spacy_facts(r.ind_text[has].tolist())
         r.loc[has, "indep_new_spacy"] = [novelty(x, y) for x, y in zip([so[i] for i in r.index[has]], si)]
     r.drop(columns=[c for c in ("o_text", "rew_text", "ind_text") if c in r]).to_csv(
-        HERE / "results" / "novelty_pairs.csv", index=False)
+        HERE / "results" / f"novelty_pairs{'' if a.rewriter == 'phi4' else '_' + a.rewriter.replace('+', '_')}.csv",
+        index=False)  # baselines.py reads the phi4 file; other rewriters get their own
 
     rew = r.rewrite_new.tolist()
     ind = r.indep_new.dropna().tolist()

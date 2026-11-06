@@ -27,3 +27,6 @@ results/pilot_summary.md
 
 # First judge run (10 answer tokens), replaced by results/judge_copies_v2
 results/judge_copies/
+
+# Paper sources and PDFs (arXiv / TMLR), kept out of the code repository
+arxiv/

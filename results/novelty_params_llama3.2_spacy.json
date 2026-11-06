@@ -1,0 +1,7 @@
+{
+ "rewriter": "llama3.2",
+ "extractor": "spacy",
+ "threshold": 0.4,
+ "recall_reworded": 0.81,
+ "false_merge": 0.05389221556886228
+}
