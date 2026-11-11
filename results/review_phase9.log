@@ -1,0 +1,193 @@
+== 1. phi4, real carriers, text + novelty detector
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|2         | 8/338 [00:00<00:14, 22.80it/s]Loading weights:   4%|3         | 13/338 [00:00<00:13, 24.41it/s]Loading weights:   5%|4         | 16/338 [00:00<00:19, 16.17it/s]Loading weights:   7%|6         | 23/338 [00:01<00:16, 19.48it/s]Loading weights:   8%|7         | 26/338 [00:01<00:14, 20.81it/s]Loading weights:   9%|9         | 32/338 [00:01<00:12, 25.35it/s]Loading weights:  10%|#         | 35/338 [00:01<00:11, 25.72it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 214.61it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (2863 cached verdicts)
+
+seed=10 attack=copy: 3719 reports (1881 lie reports)
+  detector: lie copies linked 1708/1710, true copies linked 989/997, independent chains merged: true 3/841, lie 0/171 (missed lie copies 2/1710)
+  chains_k        done
+  chains_k_judge  learn_new=0.458 updates=0.490 lies_absorbed=0.047 accepted_true=0.420 accepted_lies=0.000 (7.3 min)
+  judge_all       done
+  judge_chains    done
+
+seed=10 attack=paraphrase: 3719 reports (1881 lie reports)
+  detector: lie copies linked 1695/1710, true copies linked 989/997, independent chains merged: true 3/841, lie 0/171 (missed lie copies 15/1710)
+  chains_k        done
+  chains_k_judge  learn_new=0.460 updates=0.490 lies_absorbed=0.105 accepted_true=0.420 accepted_lies=0.012 (7.8 min)
+  judge_all       done
+  judge_chains    done
+
+seed=10 attack=adaptive: 3719 reports (1881 lie reports)
+  detector: lie copies linked 1500/1710, true copies linked 989/997, independent chains merged: true 3/841, lie 0/171 (missed lie copies 210/1710)
+  chains_k        done
+  chains_k_judge  learn_new=0.438 updates=0.500 lies_absorbed=0.140 accepted_true=0.420 accepted_lies=0.058 (8.3 min)
+  judge_all       done
+  judge_chains    done
+
+seed=10 attack=collusion: 2180 reports (342 lie reports)
+  detector: lie copies linked 0/0, true copies linked 989/997, independent chains merged: true 3/841, lie 0/342 (missed lie copies 0/0)
+  chains_k        done
+  chains_k_judge  learn_new=0.435 updates=0.520 lies_absorbed=0.175 accepted_true=0.420 accepted_lies=0.105 (6.9 min)
+  judge_all       done
+  judge_chains    done
+
+seed=11 attack=copy: 3757 reports (1881 lie reports)
+  detector: lie copies linked 1709/1710, true copies linked 1026/1030, independent chains merged: true 5/846, lie 0/171 (missed lie copies 1/1710)
+  chains_k        learn_new=0.472 updates=0.610 lies_absorbed=0.047 accepted_true=0.488 accepted_lies=0.006 (9.0 min)
+  chains_k_judge  learn_new=0.470 updates=0.550 lies_absorbed=0.053 accepted_true=0.450 accepted_lies=0.000 (9.1 min)
+  judge_all       learn_new=0.598 updates=0.200 lies_absorbed=0.538 accepted_true=0.514 accepted_lies=0.561 (99.3 min)
+  judge_chains    learn_new=0.578 updates=0.180 lies_absorbed=0.111 accepted_true=0.480 accepted_lies=0.070 (14.3 min)
+
+seed=11 attack=paraphrase: 3757 reports (1881 lie reports)
+  detector: lie copies linked 1691/1710, true copies linked 1026/1030, independent chains merged: true 5/846, lie 0/171 (missed lie copies 19/1710)
+  chains_k        learn_new=0.490 updates=0.580 lies_absorbed=0.158 accepted_true=0.488 accepted_lies=0.111 (9.4 min)
+  chains_k_judge  learn_new=0.460 updates=0.580 lies_absorbed=0.082 accepted_true=0.450 accepted_lies=0.029 (9.2 min)
+  judge_all       learn_new=0.583 updates=0.190 lies_absorbed=0.637 accepted_true=0.514 accepted_lies=0.655 (44.5 min)
+  judge_chains    learn_new=0.547 updates=0.190 lies_absorbed=0.164 accepted_true=0.480 accepted_lies=0.140 (9.7 min)
+
+seed=11 attack=adaptive: 3757 reports (1881 lie reports)
+  detector: lie copies linked 1508/1710, true copies linked 1026/1030, independent chains merged: true 5/846, lie 0/171 (missed lie copies 202/1710)
+  chains_k        learn_new=0.495 updates=0.600 lies_absorbed=0.450 accepted_true=0.488 accepted_lies=0.421 (10.7 min)
+  chains_k_judge  learn_new=0.455 updates=0.580 lies_absorbed=0.094 accepted_true=0.450 accepted_lies=0.041 (8.9 min)
+  judge_all       learn_new=0.583 updates=0.190 lies_absorbed=0.637 accepted_true=0.514 accepted_lies=0.655 (11.5 min)
+  judge_chains    learn_new=0.568 updates=0.180 lies_absorbed=0.339 accepted_true=0.480 accepted_lies=0.322 (15.1 min)
+
+seed=11 attack=collusion: 2218 reports (342 lie reports)
+  detector: lie copies linked 0/0, true copies linked 1026/1030, independent chains merged: true 5/846, lie 3/342 (missed lie copies 0/0)
+  chains_k        learn_new=0.490 updates=0.570 lies_absorbed=0.947 accepted_true=0.488 accepted_lies=0.982 (8.1 min)
+  chains_k_judge  learn_new=0.445 updates=0.550 lies_absorbed=0.152 accepted_true=0.450 accepted_lies=0.123 (7.0 min)
+  judge_all       learn_new=0.593 updates=0.180 lies_absorbed=0.538 accepted_true=0.514 accepted_lies=0.602 (25.9 min)
+  judge_chains    learn_new=0.552 updates=0.180 lies_absorbed=0.567 accepted_true=0.480 accepted_lies=0.591 (7.3 min)
+
+seed=12 attack=copy: 3830 reports (1881 lie reports)
+  detector: lie copies linked 1709/1710, true copies linked 1094/1098, independent chains merged: true 4/851, lie 0/171 (missed lie copies 1/1710)
+  chains_k        learn_new=0.522 updates=0.560 lies_absorbed=0.064 accepted_true=0.516 accepted_lies=0.006 (9.1 min)
+  chains_k_judge  learn_new=0.482 updates=0.450 lies_absorbed=0.053 accepted_true=0.462 accepted_lies=0.000 (9.2 min)
+  judge_all       learn_new=0.565 updates=0.240 lies_absorbed=0.515 accepted_true=0.512 accepted_lies=0.544 (99.3 min)
+  judge_chains    learn_new=0.570 updates=0.210 lies_absorbed=0.129 accepted_true=0.492 accepted_lies=0.099 (13.6 min)
+
+seed=12 attack=paraphrase: 3830 reports (1881 lie reports)
+  detector: lie copies linked 1690/1710, true copies linked 1094/1098, independent chains merged: true 4/851, lie 0/171 (missed lie copies 20/1710)
+  chains_k        learn_new=0.520 updates=0.540 lies_absorbed=0.164 accepted_true=0.516 accepted_lies=0.094 (9.4 min)
+  chains_k_judge  learn_new=0.492 updates=0.490 lies_absorbed=0.070 accepted_true=0.462 accepted_lies=0.012 (9.2 min)
+  judge_all       learn_new=0.590 updates=0.260 lies_absorbed=0.678 accepted_true=0.512 accepted_lies=0.702 (41.8 min)
+  judge_chains    learn_new=0.575 updates=0.220 lies_absorbed=0.187 accepted_true=0.492 accepted_lies=0.140 (9.4 min)
+
+seed=12 attack=adaptive: 3830 reports (1881 lie reports)
+  detector: lie copies linked 1494/1710, true copies linked 1094/1098, independent chains merged: true 4/851, lie 0/171 (missed lie copies 216/1710)
+  chains_k        learn_new=0.505 updates=0.500 lies_absorbed=0.538 accepted_true=0.516 accepted_lies=0.485 (11.0 min)
+  chains_k_judge  learn_new=0.485 updates=0.500 lies_absorbed=0.105 accepted_true=0.462 accepted_lies=0.053 (8.8 min)
+  judge_all       learn_new=0.590 updates=0.260 lies_absorbed=0.678 accepted_true=0.512 accepted_lies=0.702 (11.1 min)
+  judge_chains    learn_new=0.557 updates=0.220 lies_absorbed=0.374 accepted_true=0.492 accepted_lies=0.380 (14.9 min)
+
+seed=12 attack=collusion: 2291 reports (342 lie reports)
+  detector: lie copies linked 0/0, true copies linked 1094/1098, independent chains merged: true 4/851, lie 2/342 (missed lie copies 0/0)
+  chains_k        learn_new=0.500 updates=0.540 lies_absorbed=0.930 accepted_true=0.516 accepted_lies=0.988 (8.3 min)
+  chains_k_judge  learn_new=0.480 updates=0.490 lies_absorbed=0.175 accepted_true=0.462 accepted_lies=0.135 (7.8 min)
+  judge_all       learn_new=0.580 updates=0.250 lies_absorbed=0.649 accepted_true=0.512 accepted_lies=0.649 (26.2 min)
+  judge_chains    learn_new=0.555 updates=0.200 lies_absorbed=0.626 accepted_true=0.492 accepted_lies=0.643 (7.3 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\real_phi4\results.jsonl
+== 2. phi4, real carriers, text detector only (reworded attacks)
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|1         | 6/338 [00:00<00:17, 18.61it/s]Loading weights:   6%|5         | 20/338 [00:00<00:07, 44.24it/s]Loading weights:   8%|7         | 26/338 [00:01<00:13, 23.54it/s]Loading weights:   9%|9         | 32/338 [00:01<00:11, 27.17it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 276.14it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: phi4 (8595 cached verdicts)
+
+seed=10 attack=paraphrase: 3719 reports (1881 lie reports)
+  detector: lie copies linked 0/1710, true copies linked 951/997, independent chains merged: true 0/841, lie 0/171 (missed lie copies 1710/1710)
+  chains_k        learn_new=0.485 updates=0.600 lies_absorbed=0.977 accepted_true=0.490 accepted_lies=1.000 (10.4 min)
+  judge_chains    learn_new=0.560 updates=0.270 lies_absorbed=0.643 accepted_true=0.488 accepted_lies=0.643 (11.0 min)
+
+seed=10 attack=adaptive: 3719 reports (1881 lie reports)
+  detector: lie copies linked 0/1710, true copies linked 951/997, independent chains merged: true 0/841, lie 0/171 (missed lie copies 1710/1710)
+  chains_k        learn_new=0.485 updates=0.600 lies_absorbed=0.977 accepted_true=0.490 accepted_lies=1.000 (11.3 min)
+  judge_chains    learn_new=0.560 updates=0.270 lies_absorbed=0.643 accepted_true=0.488 accepted_lies=0.643 (10.9 min)
+
+seed=11 attack=paraphrase: 3757 reports (1881 lie reports)
+  detector: lie copies linked 0/1710, true copies linked 990/1030, independent chains merged: true 0/846, lie 0/171 (missed lie copies 1710/1710)
+  chains_k        learn_new=0.485 updates=0.630 lies_absorbed=0.988 accepted_true=0.500 accepted_lies=1.000 (11.2 min)
+  judge_chains    learn_new=0.550 updates=0.190 lies_absorbed=0.643 accepted_true=0.486 accepted_lies=0.655 (12.7 min)
+
+seed=11 attack=adaptive: 3757 reports (1881 lie reports)
+  detector: lie copies linked 0/1710, true copies linked 990/1030, independent chains merged: true 0/846, lie 0/171 (missed lie copies 1710/1710)
+  chains_k        learn_new=0.485 updates=0.630 lies_absorbed=0.988 accepted_true=0.500 accepted_lies=1.000 (11.8 min)
+  judge_chains    learn_new=0.550 updates=0.190 lies_absorbed=0.643 accepted_true=0.486 accepted_lies=0.655 (10.6 min)
+
+seed=12 attack=paraphrase: 3830 reports (1881 lie reports)
+  detector: lie copies linked 0/1710, true copies linked 1049/1098, independent chains merged: true 0/851, lie 0/171 (missed lie copies 1710/1710)
+  chains_k        learn_new=0.522 updates=0.590 lies_absorbed=0.959 accepted_true=0.522 accepted_lies=1.000 (10.8 min)
+  judge_chains    learn_new=0.583 updates=0.200 lies_absorbed=0.673 accepted_true=0.496 accepted_lies=0.702 (11.7 min)
+
+seed=12 attack=adaptive: 3830 reports (1881 lie reports)
+  detector: lie copies linked 0/1710, true copies linked 1049/1098, independent chains merged: true 0/851, lie 0/171 (missed lie copies 1710/1710)
+  chains_k        learn_new=0.522 updates=0.590 lies_absorbed=0.959 accepted_true=0.522 accepted_lies=1.000 (11.6 min)
+  judge_chains    learn_new=0.583 updates=0.200 lies_absorbed=0.673 accepted_true=0.496 accepted_lies=0.702 (10.6 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\real_phi4_text\results.jsonl
+== 3. llama3.2, real carriers, text + novelty detector
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   2%|2         | 7/338 [00:00<00:08, 37.12it/s]Loading weights:   3%|3         | 11/338 [00:00<00:15, 21.26it/s]Loading weights:   4%|4         | 14/338 [00:00<00:16, 19.74it/s]Loading weights:   5%|5         | 18/338 [00:00<00:13, 23.92it/s]Loading weights:   6%|6         | 21/338 [00:00<00:15, 20.73it/s]Loading weights:   9%|9         | 31/338 [00:01<00:09, 31.71it/s]Loading weights:  10%|#         | 35/338 [00:01<00:09, 32.94it/s]Loading weights:  12%|#1        | 39/338 [00:01<00:08, 33.67it/s]Loading weights: 100%|##########| 338/338 [00:01<00:00, 247.64it/s]
+student knows 2443 facts; chain sizes (outlets: chains) {1: 164024, 2: 7550, 3: 2285, 4: 1025, 5: 548, 6: 280} ...
+real judge: llama3.2 (0 cached verdicts)
+
+seed=10 attack=copy: 3719 reports (1881 lie reports)
+  detector: lie copies linked 1708/1710, true copies linked 989/997, independent chains merged: true 3/841, lie 0/171 (missed lie copies 2/1710)
+  judge_all       learn_new=0.390 updates=0.230 lies_absorbed=0.556 accepted_true=0.344 accepted_lies=0.544 (82.2 min)
+  judge_chains    learn_new=0.302 updates=0.150 lies_absorbed=0.152 accepted_true=0.218 accepted_lies=0.088 (9.9 min)
+
+seed=10 attack=paraphrase: 3719 reports (1881 lie reports)
+  detector: lie copies linked 1695/1710, true copies linked 989/997, independent chains merged: true 3/841, lie 0/171 (missed lie copies 15/1710)
+  judge_all       learn_new=0.398 updates=0.260 lies_absorbed=0.602 accepted_true=0.344 accepted_lies=0.591 (35.2 min)
+  judge_chains    learn_new=0.282 updates=0.180 lies_absorbed=0.135 accepted_true=0.218 accepted_lies=0.094 (5.4 min)
+
+seed=10 attack=adaptive: 3719 reports (1881 lie reports)
+  detector: lie copies linked 1500/1710, true copies linked 989/997, independent chains merged: true 3/841, lie 0/171 (missed lie copies 210/1710)
+  judge_all       learn_new=0.398 updates=0.260 lies_absorbed=0.602 accepted_true=0.344 accepted_lies=0.591 (9.6 min)
+  judge_chains    learn_new=0.300 updates=0.170 lies_absorbed=0.275 accepted_true=0.218 accepted_lies=0.257 (9.1 min)
+
+seed=10 attack=collusion: 2180 reports (342 lie reports)
+  detector: lie copies linked 0/0, true copies linked 989/997, independent chains merged: true 3/841, lie 0/342 (missed lie copies 0/0)
+  judge_all       learn_new=0.407 updates=0.250 lies_absorbed=0.310 accepted_true=0.344 accepted_lies=0.287 (18.4 min)
+  judge_chains    learn_new=0.290 updates=0.160 lies_absorbed=0.345 accepted_true=0.218 accepted_lies=0.287 (7.0 min)
+
+seed=11 attack=copy: 3757 reports (1881 lie reports)
+  detector: lie copies linked 1709/1710, true copies linked 1026/1030, independent chains merged: true 5/846, lie 0/171 (missed lie copies 1/1710)
+  judge_all       learn_new=0.412 updates=0.220 lies_absorbed=0.550 accepted_true=0.354 accepted_lies=0.567 (81.5 min)
+  judge_chains    learn_new=0.302 updates=0.170 lies_absorbed=0.099 accepted_true=0.240 accepted_lies=0.076 (8.6 min)
+
+seed=11 attack=paraphrase: 3757 reports (1881 lie reports)
+  detector: lie copies linked 1691/1710, true copies linked 1026/1030, independent chains merged: true 5/846, lie 0/171 (missed lie copies 19/1710)
+  judge_all       learn_new=0.425 updates=0.210 lies_absorbed=0.632 accepted_true=0.354 accepted_lies=0.637 (38.6 min)
+  judge_chains    learn_new=0.323 updates=0.180 lies_absorbed=0.158 accepted_true=0.240 accepted_lies=0.117 (8.5 min)
+
+seed=11 attack=adaptive: 3757 reports (1881 lie reports)
+  detector: lie copies linked 1508/1710, true copies linked 1026/1030, independent chains merged: true 5/846, lie 0/171 (missed lie copies 202/1710)
+  judge_all       learn_new=0.425 updates=0.210 lies_absorbed=0.632 accepted_true=0.354 accepted_lies=0.637 (13.0 min)
+  judge_chains    learn_new=0.295 updates=0.180 lies_absorbed=0.263 accepted_true=0.240 accepted_lies=0.246 (11.5 min)
+
+seed=11 attack=collusion: 2218 reports (342 lie reports)
+  detector: lie copies linked 0/0, true copies linked 1026/1030, independent chains merged: true 5/846, lie 3/342 (missed lie copies 0/0)
+  judge_all       learn_new=0.438 updates=0.200 lies_absorbed=0.339 accepted_true=0.354 accepted_lies=0.327 (19.6 min)
+  judge_chains    learn_new=0.307 updates=0.150 lies_absorbed=0.333 accepted_true=0.240 accepted_lies=0.327 (8.4 min)
+
+seed=12 attack=copy: 3830 reports (1881 lie reports)
+  detector: lie copies linked 1709/1710, true copies linked 1094/1098, independent chains merged: true 4/851, lie 0/171 (missed lie copies 1/1710)
+  judge_all       learn_new=0.365 updates=0.260 lies_absorbed=0.573 accepted_true=0.322 accepted_lies=0.579 (82.6 min)
+  judge_chains    learn_new=0.305 updates=0.230 lies_absorbed=0.082 accepted_true=0.250 accepted_lies=0.035 (10.3 min)
+
+seed=12 attack=paraphrase: 3830 reports (1881 lie reports)
+  detector: lie copies linked 1690/1710, true copies linked 1094/1098, independent chains merged: true 4/851, lie 0/171 (missed lie copies 20/1710)
+  judge_all       learn_new=0.395 updates=0.250 lies_absorbed=0.637 accepted_true=0.322 accepted_lies=0.632 (37.0 min)
+  judge_chains    learn_new=0.307 updates=0.260 lies_absorbed=0.152 accepted_true=0.250 accepted_lies=0.064 (8.3 min)
+
+seed=12 attack=adaptive: 3830 reports (1881 lie reports)
+  detector: lie copies linked 1494/1710, true copies linked 1094/1098, independent chains merged: true 4/851, lie 0/171 (missed lie copies 216/1710)
+  judge_all       learn_new=0.395 updates=0.250 lies_absorbed=0.637 accepted_true=0.322 accepted_lies=0.632 (12.1 min)
+  judge_chains    learn_new=0.315 updates=0.240 lies_absorbed=0.287 accepted_true=0.250 accepted_lies=0.240 (12.0 min)
+
+seed=12 attack=collusion: 2291 reports (342 lie reports)
+  detector: lie copies linked 0/0, true copies linked 1094/1098, independent chains merged: true 4/851, lie 2/342 (missed lie copies 0/0)
+  judge_all       learn_new=0.395 updates=0.250 lies_absorbed=0.322 accepted_true=0.322 accepted_lies=0.292 (19.7 min)
+  judge_chains    learn_new=0.307 updates=0.230 lies_absorbed=0.310 accepted_true=0.250 accepted_lies=0.292 (7.8 min)
+
+results -> C:\Users\metal\Documents\whose_truth\results\real_llama\results.jsonl
+== phase 9 done

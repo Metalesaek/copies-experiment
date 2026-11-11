@@ -193,6 +193,11 @@ def main():
             reports = build_reports(world, cfg.copies, sample_size, attack, seed)
             n_lie = sum(not r.claim.is_true for r in reports)
             print(f"\nseed={seed} attack={attack}: {len(reports)} reports ({n_lie} lie reports)")
+            if getattr(cfg.copies, "carriers", "simulated") == "real":   # what the real detector did
+                from real_carriers import DETECTOR_STATS, stats_line
+                print("  " + stats_line(DETECTOR_STATS))
+                with (out / "detector_stats.jsonl").open("a", encoding="utf-8") as f:
+                    f.write(json.dumps(dict(seed=seed, attack=attack, **DETECTOR_STATS)) + "\n")
             for system in a.systems:
                 if (system, attack, seed) in done:
                     print(f"  {system:<15} done")

@@ -12,6 +12,7 @@ data/annotation_pairs_texts.csv
 data/annotation_pairs_labelled.csv
 data/reworded_articles.jsonl
 data/multi_rewrites.jsonl
+data/carriers.jsonl
 data/chain_purity_examples*.csv
 
 # Earlier pilot ("whose truth gets learned"), not part of this paper
@@ -30,3 +31,4 @@ results/judge_copies/
 
 # Paper sources and PDFs (arXiv / TMLR), kept out of the code repository
 arxiv/
+ipm/

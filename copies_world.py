@@ -38,6 +38,7 @@ class Report:
     time: float            # days
     outlet: str = ""       # invented outlet name (shown to a real judge)
     text: str = ""         # wording: copies repeat their origin; independent chains and reworded copies differ
+    article: object = None  # real carrier article with the claim inserted (copies.carriers=real, real_carriers.py)
 
 
 def chain_size_sampler(path: Path, corpus_articles: int):
@@ -56,6 +57,9 @@ def chain_size_sampler(path: Path, corpus_articles: int):
 
 
 def build_reports(world, C, sample_size, attack: str, seed: int) -> list[Report]:
+    if getattr(C, "carriers", "simulated") == "real":   # real articles + real detectors (real_carriers.py)
+        from real_carriers import build_reports_real
+        return build_reports_real(world, C, sample_size, attack, seed)
     rng = random.Random(seed * 1009 + 17)
     out_rng = random.Random(seed * 1013 + 5)   # separate stream: outlets do not change the report structure
     pick_outlet = lambda: out_rng.choice(OUTLETS)

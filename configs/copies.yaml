@@ -20,6 +20,11 @@ copies:
   miss_profiles: ""          # results/miss_profiles.json: measured miss patterns of real copy networks
   miss_profile_key: ""       # e.g. paraphrase/new_information (multi_rewrites.py)
   collusion_chains: 2        # independent liars per lie in the collusion attack
+  carriers: simulated        # real: real CC-News articles carry the claims, real detectors link them (real_carriers.py)
+  carrier_file: data/carriers.jsonl   # built once by: python real_carriers.py --prepare
+  detector: text+novelty     # carriers=real: text (5-gram Jaccard) or text+novelty (also entity novelty)
+  jaccard_threshold: 0.6     # carriers=real: text detector links a report at Jaccard >= this
+  novelty_threshold: 0.4     # carriers=real: novelty test links a report below this share of new entities
   horizon_days: 30
   chain_spread_days: 3       # independent chains of one claim start within this window
   copy_spread_days: 1        # copies follow their origin within this window

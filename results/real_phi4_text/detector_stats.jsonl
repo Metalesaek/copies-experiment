@@ -1,0 +1,6 @@
+{"seed": 10, "attack": "paraphrase", "true_chain_origins": 841, "lie_chain_origins": 171, "lie_copies_missed": 1710, "lie_copies": 1710, "true_copies_linked_text": 951, "true_copies": 997, "true_copies_missed": 46}
+{"seed": 10, "attack": "adaptive", "true_chain_origins": 841, "lie_chain_origins": 171, "lie_copies_missed": 1710, "lie_copies": 1710, "true_copies_linked_text": 951, "true_copies": 997, "true_copies_missed": 46}
+{"seed": 11, "attack": "paraphrase", "true_chain_origins": 846, "true_copies_missed": 40, "true_copies": 1030, "true_copies_linked_text": 990, "lie_chain_origins": 171, "lie_copies_missed": 1710, "lie_copies": 1710}
+{"seed": 11, "attack": "adaptive", "true_chain_origins": 846, "true_copies_missed": 40, "true_copies": 1030, "true_copies_linked_text": 990, "lie_chain_origins": 171, "lie_copies_missed": 1710, "lie_copies": 1710}
+{"seed": 12, "attack": "paraphrase", "true_chain_origins": 851, "lie_chain_origins": 171, "true_copies_linked_text": 1049, "true_copies": 1098, "lie_copies_missed": 1710, "lie_copies": 1710, "true_copies_missed": 49}
+{"seed": 12, "attack": "adaptive", "true_chain_origins": 851, "lie_chain_origins": 171, "true_copies_linked_text": 1049, "true_copies": 1098, "lie_copies_missed": 1710, "lie_copies": 1710, "true_copies_missed": 49}
